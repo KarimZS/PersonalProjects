@@ -1,0 +1,9 @@
+{
+  "name": "D&D Mini Tracker",
+  "short_name": "Mini Tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#16131a",
+  "theme_color": "#16131a",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

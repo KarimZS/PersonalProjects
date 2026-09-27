@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16131a">
+  <meta name="description" content="Track your D&D Icons of the Realms miniature collection.">
+  <title>D&amp;D Mini Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn only-mobile" id="openSets" aria-label="Choose set" aria-controls="sidebar" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="brand">
+      <svg class="d20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 2l-5 13h10zM3 7l4 8M21 7l-4 8M7 15l5 7 5-7"/></svg>
+      <div>
+        <h1>Mini Tracker</h1>
+        <p class="sub">Icons of the Realms · Core Sets</p>
+      </div>
+    </div>
+    <div class="overall" id="overall"></div>
+    <button class="icon-btn" id="openMenu" aria-label="Backup and settings" aria-haspopup="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+    </button>
+    <div class="menu" id="menu" hidden>
+      <button id="exportBtn">Export collection (JSON)</button>
+      <button id="importBtn">Import collection…</button>
+      <button id="resetBtn" class="danger">Reset collection</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Sets">
+      <div class="sidebar-head">
+        <input type="search" id="setSearch" placeholder="Filter sets…" aria-label="Filter sets">
+        <button class="icon-btn only-mobile" id="closeSets" aria-label="Close set list">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <nav id="setList"></nav>
+    </aside>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <main class="main">
+      <section class="set-header" id="setHeader"></section>
+
+      <section class="filters" aria-label="Filters">
+        <input type="search" id="search" placeholder="Search minis…" aria-label="Search minis">
+        <div class="chips" id="statusChips" role="group" aria-label="Show">
+          <button data-status="all" class="chip active">All</button>
+          <button data-status="owned" class="chip">Owned</button>
+          <button data-status="missing" class="chip">Missing</button>
+          <button data-status="dupes" class="chip">Duplicates</button>
+          <button data-status="wish" class="chip">Wishlist</button>
+        </div>
+        <div class="selects">
+          <select id="rarity" aria-label="Rarity"><option value="">Any rarity</option></select>
+          <select id="size" aria-label="Size"><option value="">Any size</option></select>
+          <select id="sort" aria-label="Sort">
+            <option value="number">Sort: Number</option>
+            <option value="name">Sort: Name</option>
+            <option value="rarity">Sort: Rarity</option>
+            <option value="size">Sort: Size</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+      <section class="grid" id="grid"></section>
+      <p class="empty" id="empty" hidden>No minis match these filters.</p>
+
+      <footer class="foot">
+        Mini data and images from
+        <a href="https://www.minisgallery.com/index.php?id=icons-of-the-realms-core-sets" target="_blank" rel="noopener">MinisGallery</a>
+        <span id="scraped"></span>. D&amp;D and Icons of the Realms are trademarks of Wizards of the Coast.
+        Your collection is saved in this browser; use Export to back it up.
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="detail" class="detail">
+    <form method="dialog"><button class="icon-btn close" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button></form>
+    <div id="detailBody"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="data/minis.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
