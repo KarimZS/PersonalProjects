@@ -23,12 +23,14 @@ No dependencies are needed (Node 18+). You can also open `public/index.html` dir
 
 ## Deploy to Railway
 
-1. Create a new Railway service from this GitHub repo. No Root Directory setting is needed:
-   the repo root's `package.json` runs `node dnd-mini-tracker/server.js`.
-2. Railway detects Node, runs `npm start` and provides `PORT`. The health check is `/health` (see `railway.json`).
-3. Under **Settings → Networking**, generate a domain.
+This repo holds several projects, so each one is its own Railway service.
 
-(Setting Root Directory to `dnd-mini-tracker` also works.)
+1. In your Railway project, add a service from this GitHub repo.
+2. In the service's **Settings → Source**, set **Root Directory** to `/dnd-mini-tracker`.
+   Railway then uses this folder's `package.json` and `railway.json`.
+3. Optional: set **Watch Paths** to `/dnd-mini-tracker/**`, so changes to other projects don't redeploy this one.
+4. Railway detects Node, runs `npm start` and provides `PORT`. The health check is `/health`.
+5. Under **Settings → Networking**, generate a domain.
 
 ## Refreshing the mini list
 
