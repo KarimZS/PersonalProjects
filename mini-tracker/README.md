@@ -1,10 +1,10 @@
 # Mini Tracker
 
-A mobile-friendly collection tracker for **D&D Icons of the Realms** miniatures.
+A mobile-friendly miniatures collection tracker. It currently covers **D&D Icons of the Realms** and **Critical Role** minis.
 It covers every Icons of the Realms category on
 [MinisGallery](https://www.minisgallery.com/index.php?id=icons-of-the-realms): Core Sets,
-Premium Sets, Special Release Sets (Warbands, Adult Dragons, Classic Monsters and more), Premium Figures and Promos.
-That's 275 sets and 3,194 minis.
+Premium Sets, Special Release Sets (Warbands, Adult Dragons, Classic Monsters and more), Premium Figures and Promos,
+plus [Critical Role](https://www.minisgallery.com/index.php?id=critical-role-miniatures). That's 303 sets and 3,384 minis.
 
 ## Features
 
@@ -67,7 +67,7 @@ Railpack detects Node from `package.json` and runs `npm start`. The server liste
 npm run scrape       # python3 scripts/scrape.py
 ```
 
-This crawls every Icons of the Realms category on MinisGallery and rewrites `public/data/minis.json` and `public/data/minis.js`.
+This crawls every category listed in `CATEGORIES` in `scripts/scrape.py` on MinisGallery and rewrites `public/data/minis.json` and `public/data/minis.js`.
 Saved collections are keyed by set and mini number and name, so they keep working after a refresh.
 
 Images are loaded directly from MinisGallery. D&D and Icons of the Realms are trademarks of Wizards of the Coast.

@@ -1,5 +1,5 @@
 {
- "source": "https://www.minisgallery.com/index.php?id=icons-of-the-realms",
+ "source": "https://www.minisgallery.com/",
  "scraped": "2026-09-27",
  "sets": [
   {
@@ -29676,6 +29676,1946 @@
     }
    ],
    "category": "Promos",
+   "group": ""
+  },
+  {
+   "id": "critical-role-the-darrington-brigade",
+   "name": "The Darrington Brigade",
+   "info": [
+    "",
+    "9 Miniatures",
+    "Jan 31, 2024"
+   ],
+   "release": "Jan 31, 2024",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-the-darrington-brigade",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Sir Taryon Darrington",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/sir-taryon-darrington_render.jpg",
+     "id": "1-sir-taryon-darrington"
+    },
+    {
+     "number": "2",
+     "name": "Doty",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/doty_render.jpg",
+     "id": "2-doty"
+    },
+    {
+     "number": "3",
+     "name": "Farriwen Breeze",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/farriwen-breeze_render.jpg",
+     "id": "3-farriwen-breeze"
+    },
+    {
+     "number": "4",
+     "name": "The Dark Owl",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/the-dark-owl_render.jpg",
+     "id": "4-the-dark-owl"
+    },
+    {
+     "number": "5",
+     "name": "Damian Vadoma",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/damian-vadoma_render.jpg",
+     "id": "5-damian-vadoma"
+    },
+    {
+     "number": "6",
+     "name": "Buddy",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/buddy_render.jpg",
+     "id": "6-buddy"
+    },
+    {
+     "number": "7",
+     "name": "Hazel Copperpot",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/hazel-copperpot_render.jpg",
+     "id": "7-hazel-copperpot"
+    },
+    {
+     "number": "8",
+     "name": "Macaroni Samsonite",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/macaroni-samsonite_render.jpg",
+     "id": "8-macaroni-samsonite"
+    },
+    {
+     "number": "9",
+     "name": "Lawrence Darrington",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-darrington-brigade/lawrence-darrington_render.jpg",
+     "id": "9-lawrence-darrington"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-ukotoa",
+   "name": "Uk'otoa",
+   "info": [
+    "Box of 1 visible mini",
+    "1 Miniature (in 3 parts)",
+    "Sep 27, 2023"
+   ],
+   "release": "Sep 27, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-ukotoa",
+   "minis": [
+    {
+     "number": "",
+     "name": "Uk'otoa (Head)",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/unknown.jpg",
+     "id": "uk-otoa-head"
+    },
+    {
+     "number": "",
+     "name": "Uk''otoa (Body)",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/unknown.jpg",
+     "id": "uk-otoa-body"
+    },
+    {
+     "number": "",
+     "name": "Uk'otoa (Tail)",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/unknown.jpg",
+     "id": "uk-otoa-tail"
+    },
+    {
+     "number": "",
+     "name": "Uk'otoa",
+     "rarity": "Unique",
+     "size": "3-Part Miniature",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/ukotoa_render.jpg",
+     "id": "uk-otoa"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-cree-vessel-of-the-pattern",
+   "name": "Cree, Vessel of the Pattern",
+   "info": [
+    "",
+    "1 Miniature",
+    "Jul 5, 2023"
+   ],
+   "release": "Jul 5, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-cree-vessel-of-the-pattern",
+   "minis": [
+    {
+     "number": "",
+     "name": "Cree, Vessel of the Pattern",
+     "rarity": "Unique",
+     "size": "Unknown",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/cree-vessel-of-the-pattern_render.jpg",
+     "id": "cree-vessel-of-the-pattern"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-the-tombtakers",
+   "name": "The Tombtakers",
+   "info": [
+    "",
+    "5 miniatures",
+    "Jul 5, 2023"
+   ],
+   "release": "Jul 5, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-the-tombtakers",
+   "minis": [
+    {
+     "number": "",
+     "name": "Lucien",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-tombtakers/lucien_render.jpg",
+     "id": "lucien"
+    },
+    {
+     "number": "",
+     "name": "Cree",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-tombtakers/cree_render.jpg",
+     "id": "cree"
+    },
+    {
+     "number": "",
+     "name": "Otis",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-tombtakers/otis_render.jpg",
+     "id": "otis"
+    },
+    {
+     "number": "",
+     "name": "Zoran",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-tombtakers/zoran_render.jpg",
+     "id": "zoran"
+    },
+    {
+     "number": "",
+     "name": "Tyffial",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-tombtakers/tyffial_render.jpg",
+     "id": "tyffial"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-obann-the-punished",
+   "name": "Obann the Punished",
+   "info": [
+    "",
+    "1 Miniature",
+    "Jun 28, 2023"
+   ],
+   "release": "Jun 28, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-obann-the-punished",
+   "minis": [
+    {
+     "number": "",
+     "name": "Obann the Punished",
+     "rarity": "Unique",
+     "size": "Unknown",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/obann-the-punished_render.jpg",
+     "id": "obann-the-punished"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-the-mighty-nein",
+   "name": "The Mighty Nein Boxed Set",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Feb 22, 2023"
+   ],
+   "release": "Feb 22, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-the-mighty-nein",
+   "minis": [
+    {
+     "number": "",
+     "name": "Yasha Nydoorin",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/yasha-nydoorin_render.jpg",
+     "id": "yasha-nydoorin"
+    },
+    {
+     "number": "",
+     "name": "Fjord Stone",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/fjord-stone_render.jpg",
+     "id": "fjord-stone"
+    },
+    {
+     "number": "",
+     "name": "Jester Lavorre",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/jester-lavorre_render.jpg",
+     "id": "jester-lavorre"
+    },
+    {
+     "number": "",
+     "name": "Veth Brenatto",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/veth-brenatto_render.jpg",
+     "id": "veth-brenatto"
+    },
+    {
+     "number": "",
+     "name": "Beauregard Lionett",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/beauregard-lionett_render.jpg",
+     "id": "beauregard-lionett"
+    },
+    {
+     "number": "",
+     "name": "Caleb Widogast",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/caleb-widogast_render.jpg",
+     "id": "caleb-widogast"
+    },
+    {
+     "number": "",
+     "name": "Caduceus Clay",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/caduceus-clay_render.jpg",
+     "id": "caduceus-clay"
+    },
+    {
+     "number": "",
+     "name": "Mollymauk Tealeaf",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/mollymauk-tealeaf_render.jpg",
+     "id": "mollymauk-tealeaf"
+    },
+    {
+     "number": "",
+     "name": "Nott the Brave",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/the-mighty-nein/nott-the-brave_render.jpg",
+     "id": "nott-the-brave"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-vox-machina",
+   "name": "Vox Machina Boxed Set",
+   "info": [
+    "Box of visible minis",
+    "8 miniatures",
+    "Feb 8, 2023"
+   ],
+   "release": "Feb 8, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-vox-machina",
+   "minis": [
+    {
+     "number": "",
+     "name": "Scanlan Shorthalt",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/scanlan-shorthalt_render.jpg",
+     "id": "scanlan-shorthalt"
+    },
+    {
+     "number": "",
+     "name": "Vex'ahlia",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/vexahlia_render.jpg",
+     "id": "vex-ahlia"
+    },
+    {
+     "number": "",
+     "name": "Vax'ildan",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/vaxildan_render.jpg",
+     "id": "vax-ildan"
+    },
+    {
+     "number": "",
+     "name": "Percival de Rolo",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/percy-de-rolo_render.jpg",
+     "id": "percival-de-rolo"
+    },
+    {
+     "number": "",
+     "name": "Keyleth",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/keyleth_render.jpg",
+     "id": "keyleth"
+    },
+    {
+     "number": "",
+     "name": "Pike Trickfoot",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/pike-trickfoot_render.jpg",
+     "id": "pike-trickfoot"
+    },
+    {
+     "number": "",
+     "name": "Grog Strongjaw",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/grog-strongjaw_render.jpg",
+     "id": "grog-strongjaw"
+    },
+    {
+     "number": "",
+     "name": "Trinket",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/vox-machina/trinket_render.jpg",
+     "id": "trinket"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-exandria-3",
+   "name": "Monsters of Exandria - Set 3",
+   "info": [
+    "Box of visible minis",
+    "5 miniatures",
+    "Feb 8, 2023"
+   ],
+   "release": "Feb 8, 2023",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-exandria-3",
+   "minis": [
+    {
+     "number": "",
+     "name": "Abyssal Abomination",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-3/abyssal-abomination_render.jpg",
+     "id": "abyssal-abomination"
+    },
+    {
+     "number": "",
+     "name": "Ghurrix",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-3/ghurrix_render.jpg",
+     "id": "ghurrix"
+    },
+    {
+     "number": "",
+     "name": "Naga Abomination",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-3/naga-abomination_render.jpg",
+     "id": "naga-abomination"
+    },
+    {
+     "number": "",
+     "name": "Servant of Ghurrix",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-3/servant-of-ghurrix_render.jpg",
+     "id": "servant-of-ghurrix"
+    },
+    {
+     "number": "",
+     "name": "Symphior",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-3/symphior_render.jpg",
+     "id": "symphior"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-bells-hells",
+   "name": "Bells Hells",
+   "info": [
+    "Box of visible minis",
+    "10 miniatures",
+    "Oct 12, 2022"
+   ],
+   "release": "Oct 12, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-bells-hells",
+   "minis": [
+    {
+     "number": "",
+     "name": "Fearne Calloway",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/fearne-calloway_pre.jpg",
+     "id": "fearne-calloway"
+    },
+    {
+     "number": "",
+     "name": "Little Mister",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/little-mister_pre.jpg",
+     "id": "little-mister"
+    },
+    {
+     "number": "",
+     "name": "Imogen Temult",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/imogen-temult_pre.jpg",
+     "id": "imogen-temult"
+    },
+    {
+     "number": "",
+     "name": "Orym, of the Air Ashari",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/orym-of-the-air-ashari_pre.jpg",
+     "id": "orym-of-the-air-ashari"
+    },
+    {
+     "number": "",
+     "name": "Dorian Storm",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/dorian-storm_pre.jpg",
+     "id": "dorian-storm"
+    },
+    {
+     "number": "",
+     "name": "Chetney Pock O'Pea",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/chetney-pock-o-pea_pre.jpg",
+     "id": "chetney-pock-o-pea"
+    },
+    {
+     "number": "",
+     "name": "Werewolf Chetney",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/werewolf-chetney_pre.jpg",
+     "id": "werewolf-chetney"
+    },
+    {
+     "number": "",
+     "name": "Laudna",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/laudna_pre.jpg",
+     "id": "laudna"
+    },
+    {
+     "number": "",
+     "name": "Fresh Cut Grass",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/fresh-cut-grass_pre.jpg",
+     "id": "fresh-cut-grass"
+    },
+    {
+     "number": "",
+     "name": "Ashton Greymoore",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/bells-hells/ashton-greymoore_pre.jpg",
+     "id": "ashton-greymoore"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-exandria-1",
+   "name": "Monsters of Exandria - Set 1",
+   "info": [
+    "Box of visible minis",
+    "8 Miniatures",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-exandria-1",
+   "minis": [
+    {
+     "number": "",
+     "name": "Artagan",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/artagan_pre.jpg",
+     "id": "artagan"
+    },
+    {
+     "number": "",
+     "name": "Hotis",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/hotis_pre.jpg",
+     "id": "hotis"
+    },
+    {
+     "number": "",
+     "name": "Kamaljiori",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/kamaljiori_pre.jpg",
+     "id": "kamaljiori"
+    },
+    {
+     "number": "",
+     "name": "Mystic Iotha",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/mystic-iotha_pre.jpg",
+     "id": "mystic-iotha"
+    },
+    {
+     "number": "",
+     "name": "Nahla",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/nahla_pre.jpg",
+     "id": "nahla"
+    },
+    {
+     "number": "",
+     "name": "Osysa",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/osysa_pre.jpg",
+     "id": "osysa"
+    },
+    {
+     "number": "",
+     "name": "Ukurat",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/ukurat_pre.jpg",
+     "id": "ukurat"
+    },
+    {
+     "number": "",
+     "name": "Utugash",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-1/utugash_pre.jpg",
+     "id": "utugash"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-npcs-of-taldorei-2",
+   "name": "NPC's of Tal'Dorei - Set 2",
+   "info": [
+    "Box of visible minis",
+    "12 Miniatures",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-npcs-of-taldorei-2",
+   "minis": [
+    {
+     "number": "",
+     "name": "Allura Vysoren",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/allura-vysoren_pre.jpg",
+     "id": "allura-vysoren"
+    },
+    {
+     "number": "",
+     "name": "Cassandra de Rolo",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/cassandra-de-rolo_pre.jpg",
+     "id": "cassandra-de-rolo"
+    },
+    {
+     "number": "",
+     "name": "Earthbreaker Groon",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/earthbreaker-groon_pre.jpg",
+     "id": "earthbreaker-groon"
+    },
+    {
+     "number": "",
+     "name": "J'mon Sa Ord",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/jmon-sa-ord_pre.jpg",
+     "id": "j-mon-sa-ord"
+    },
+    {
+     "number": "",
+     "name": "Jarett Howarth",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/jarett-howarth_pre.jpg",
+     "id": "jarett-howarth"
+    },
+    {
+     "number": "",
+     "name": "Kaylie Shorthalt",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/kaylie-shorthalt_pre.jpg",
+     "id": "kaylie-shorthalt"
+    },
+    {
+     "number": "",
+     "name": "Kern the Hammer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/kern-the-hammer_pre.jpg",
+     "id": "kern-the-hammer"
+    },
+    {
+     "number": "",
+     "name": "Lady Kima",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/lady-kima_pre.jpg",
+     "id": "lady-kima"
+    },
+    {
+     "number": "",
+     "name": "Seeker Assum Emring",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/seeker-assum-emring_pre.jpg",
+     "id": "seeker-assum-emring"
+    },
+    {
+     "number": "",
+     "name": "Senokir",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/senokir_pre.jpg",
+     "id": "senokir"
+    },
+    {
+     "number": "",
+     "name": "Shaun Gilmore",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/shaun-gilmore_pre2.jpg",
+     "id": "shaun-gilmore"
+    },
+    {
+     "number": "",
+     "name": "Viktor",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei-2/viktor_pre.jpg",
+     "id": "viktor"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-npcs-of-wildemount",
+   "name": "NPC's of Wildemount",
+   "info": [
+    "",
+    "9 Miniatures",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-npcs-of-wildemount",
+   "minis": [
+    {
+     "number": "",
+     "name": "Essek Thelyss",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/essek-thelyss_pre.jpg",
+     "id": "essek-thelyss"
+    },
+    {
+     "number": "",
+     "name": "Kiri",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/kiri_pre2.jpg",
+     "id": "kiri"
+    },
+    {
+     "number": "",
+     "name": "Marion Lavorre",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/marion-lavorre_pre.jpg",
+     "id": "marion-lavorre"
+    },
+    {
+     "number": "",
+     "name": "Orly Skiffback",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/orly-skiffback_pre.jpg",
+     "id": "orly-skiffback"
+    },
+    {
+     "number": "",
+     "name": "Sunbreaker Ulumon",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/sunbreaker-ulumon_pre.jpg",
+     "id": "sunbreaker-ulumon"
+    },
+    {
+     "number": "",
+     "name": "The Gentleman",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/the-gentleman_pre.jpg",
+     "id": "the-gentleman"
+    },
+    {
+     "number": "",
+     "name": "The Traveler",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/the-traveler_pre.jpg",
+     "id": "the-traveler"
+    },
+    {
+     "number": "",
+     "name": "Trent Ikithon",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/trent-ikithon_pre.jpg",
+     "id": "trent-ikithon"
+    },
+    {
+     "number": "",
+     "name": "Yussa Errenis",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/yussa-errenis_pre.jpg",
+     "id": "yussa-errenis"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-exandria-forge-guardian-premium-miniature",
+   "name": "Monsters of Exandria - Forge Guardian Premium Figure",
+   "info": [
+    "Box of 1 visible mini",
+    "1 Miniature",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-exandria-forge-guardian-premium-miniature",
+   "minis": [
+    {
+     "number": "",
+     "name": "Forge Guardian",
+     "rarity": "Unique",
+     "size": "Unknown",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/forge-guardian_pre.jpg",
+     "id": "forge-guardian"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-exandria-2",
+   "name": "Monsters of Exandria - Set 2",
+   "info": [
+    "Box of visible minis",
+    "8 Miniatures",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-exandria-2",
+   "minis": [
+    {
+     "number": "",
+     "name": "Delilah Briarwood",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/delilah-briarwood_pre.jpg",
+     "id": "delilah-briarwood"
+    },
+    {
+     "number": "",
+     "name": "Dr. Anna Ripley",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/dr-anna-ripley_pre.jpg",
+     "id": "dr-anna-ripley"
+    },
+    {
+     "number": "",
+     "name": "Lorenzo",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/lorenzo_pre.jpg",
+     "id": "lorenzo"
+    },
+    {
+     "number": "",
+     "name": "Magehunter Golem",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/magehunter-golem_pre.jpg",
+     "id": "magehunter-golem"
+    },
+    {
+     "number": "",
+     "name": "Obann",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/obann_pre.jpg",
+     "id": "obann"
+    },
+    {
+     "number": "",
+     "name": "Orthax",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/orthax_pre.jpg",
+     "id": "orthax"
+    },
+    {
+     "number": "",
+     "name": "Sylas Briarwood",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/sylas-briarwood_pre.jpg",
+     "id": "sylas-briarwood"
+    },
+    {
+     "number": "",
+     "name": "The Laughing Hand",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-exandria-2/the-laughing-hand_pre.jpg",
+     "id": "the-laughing-hand"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-guests-of-critical-role",
+   "name": "Guests of Critical Role",
+   "info": [
+    "Box of visible minis",
+    "10 Miniatures",
+    "Jul 20, 2022"
+   ],
+   "release": "Jul 20, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-guests-of-critical-role",
+   "minis": [
+    {
+     "number": "",
+     "name": "Calianna",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/calianna_pre.jpg",
+     "id": "calianna"
+    },
+    {
+     "number": "",
+     "name": "Garthok",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/garthok_pre.jpg",
+     "id": "garthok"
+    },
+    {
+     "number": "",
+     "name": "Kashaw Vesh",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/kashaw-vesh_pre.jpg",
+     "id": "kashaw-vesh"
+    },
+    {
+     "number": "",
+     "name": "Keg",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/keg_pre.jpg",
+     "id": "keg"
+    },
+    {
+     "number": "",
+     "name": "Lionel",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/lionel_pre.jpg",
+     "id": "lionel"
+    },
+    {
+     "number": "",
+     "name": "Reani",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/reani_pre.jpg",
+     "id": "reani"
+    },
+    {
+     "number": "",
+     "name": "Shakaste",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/shakaste_pre.jpg",
+     "id": "shakaste"
+    },
+    {
+     "number": "",
+     "name": "Thorbir",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/thorbir_pre.jpg",
+     "id": "thorbir"
+    },
+    {
+     "number": "",
+     "name": "Tova",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/tova_pre.jpg",
+     "id": "tova"
+    },
+    {
+     "number": "",
+     "name": "Zahra",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/guests-of-critical-role/zahra_pre.jpg",
+     "id": "zahra"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-taldorei-2",
+   "name": "Monsters of Tal'Dorei - Set 2",
+   "info": [
+    "Box of visible minis",
+    "10 miniatures",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-taldorei-2",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Adranach",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/adranach.jpg",
+     "id": "1-adranach"
+    },
+    {
+     "number": "2",
+     "name": "Centaur Skeleton",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/centaur-skeleton.jpg",
+     "id": "2-centaur-skeleton"
+    },
+    {
+     "number": "3",
+     "name": "Centaur Skeleton with Head",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/centaur-skeleton-with-head.jpg",
+     "id": "3-centaur-skeleton-with-head"
+    },
+    {
+     "number": "4",
+     "name": "Cold Snap Spirit",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/cold-snap-spirit.jpg",
+     "id": "4-cold-snap-spirit"
+    },
+    {
+     "number": "5",
+     "name": "Cyclops Stormcaller",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/cyclops-stormcaller.jpg",
+     "id": "5-cyclops-stormcaller"
+    },
+    {
+     "number": "6",
+     "name": "Demonfeed Spider",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/demonfeed-spider.jpg",
+     "id": "6-demonfeed-spider"
+    },
+    {
+     "number": "7",
+     "name": "Ettin",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/ettin.jpg",
+     "id": "7-ettin"
+    },
+    {
+     "number": "8",
+     "name": "Flaming Skeleton",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/flaming-skeleton.jpg",
+     "id": "8-flaming-skeleton"
+    },
+    {
+     "number": "9",
+     "name": "Satyr",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/satyr.jpg",
+     "id": "9-satyr"
+    },
+    {
+     "number": "10",
+     "name": "Wraithroot Tree",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-2/wraithroot-tree.jpg",
+     "id": "10-wraithroot-tree"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-npcs-of-taldorei",
+   "name": "NPC's of Tal'Dorei",
+   "info": [
+    "Box of visible minis",
+    "7 miniatures",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-npcs-of-taldorei",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Ashari Fire Elemental",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-fire-elemental.jpg",
+     "id": "1-ashari-fire-elemental"
+    },
+    {
+     "number": "2",
+     "name": "Ashari Firetamer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-firetamer.jpg",
+     "id": "2-ashari-firetamer"
+    },
+    {
+     "number": "3",
+     "name": "Ashari Shark",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-shark.jpg",
+     "id": "3-ashari-shark"
+    },
+    {
+     "number": "4",
+     "name": "Ashari Octopus",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-octopus.jpg",
+     "id": "4-ashari-octopus"
+    },
+    {
+     "number": "5",
+     "name": "Ashari Skydancer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-skydancer.jpg",
+     "id": "5-ashari-skydancer"
+    },
+    {
+     "number": "6",
+     "name": "Ashari Stoneguard",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-stoneguard.jpg",
+     "id": "6-ashari-stoneguard"
+    },
+    {
+     "number": "7",
+     "name": "Ashari Waverider",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-taldorei/ashari-waverider.jpg",
+     "id": "7-ashari-waverider"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-npcs-of-exandria",
+   "name": "NPC's of Exandria",
+   "info": [
+    "Box of visible minis",
+    "10 miniatures",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-npcs-of-exandria",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Captain Avantika",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/captain-avantika.jpg",
+     "id": "1-captain-avantika"
+    },
+    {
+     "number": "2",
+     "name": "Clasp Cutthroat",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/clasp-cutthroat.jpg",
+     "id": "2-clasp-cutthroat"
+    },
+    {
+     "number": "3",
+     "name": "Clasp Enforcer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/clasp-enforcer.jpg",
+     "id": "3-clasp-enforcer"
+    },
+    {
+     "number": "4",
+     "name": "Clasp Member",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/clasp-member.jpg",
+     "id": "4-clasp-member"
+    },
+    {
+     "number": "5",
+     "name": "Jourrael, the Caedogeist",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/jourrael-the-caedogeist.jpg",
+     "id": "5-jourrael-the-caedogeist"
+    },
+    {
+     "number": "6",
+     "name": "King Warren Drassig",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/king-warren-drassig.jpg",
+     "id": "6-king-warren-drassig"
+    },
+    {
+     "number": "7",
+     "name": "Ravager Slaughter Lord",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/ravager-slaughter-lord.jpg",
+     "id": "7-ravager-slaughter-lord"
+    },
+    {
+     "number": "8",
+     "name": "Ravager Stabby-Stabber",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/ravager-stabby-stabber.jpg",
+     "id": "8-ravager-stabby-stabber"
+    },
+    {
+     "number": "9",
+     "name": "Remnant Chosen",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/remnant-chosen.jpg",
+     "id": "9-remnant-chosen"
+    },
+    {
+     "number": "10",
+     "name": "Remnant Cultist",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-exandria/remnant-cultist.jpg",
+     "id": "10-remnant-cultist"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-taldorei-ember-roc-premium-figure",
+   "name": "Monsters of Tal'Dorei - Ember Roc Premium Figure",
+   "info": [
+    "Box of 1 visible mini",
+    "1 Miniature",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-taldorei-ember-roc-premium-figure",
+   "minis": [
+    {
+     "number": "",
+     "name": "Ember Roc",
+     "rarity": "Unique",
+     "size": "Unknown",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/ember-roc.jpg",
+     "id": "ember-roc"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-taldorei-1",
+   "name": "Monsters of Tal'Dorei - Set 1",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-taldorei-1",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Deepkeeper",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/deepkeeper.jpg",
+     "id": "1-deepkeeper"
+    },
+    {
+     "number": "2",
+     "name": "Cinderslag Elemental",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/cinderslag-elemental.jpg",
+     "id": "2-cinderslag-elemental"
+    },
+    {
+     "number": "3",
+     "name": "Cobalt Golem",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/cobalt-golem.jpg",
+     "id": "3-cobalt-golem"
+    },
+    {
+     "number": "4",
+     "name": "Magma Landshark",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/magma-landshark.jpg",
+     "id": "4-magma-landshark"
+    },
+    {
+     "number": "5",
+     "name": "Miskath Gorgon",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/miskath-gorgon.jpg",
+     "id": "5-miskath-gorgon"
+    },
+    {
+     "number": "6",
+     "name": "Platinum Golem",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/platinum-golem.jpg",
+     "id": "6-platinum-golem"
+    },
+    {
+     "number": "7",
+     "name": "Vos'sykriss Serpentfolk",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/vossykriss-serpentfolk.jpg",
+     "id": "7-vos-sykriss-serpentfolk"
+    },
+    {
+     "number": "8",
+     "name": "Vos'sykriss Serpentfolk Ghost (A)",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/vossykriss-serpentfolk-ghost-a.jpg",
+     "id": "8-vos-sykriss-serpentfolk-ghost-a"
+    },
+    {
+     "number": "9",
+     "name": "Vos'sykriss Serpentfolk Ghost (B)",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-taldorei-1/vossykriss-serpentfolk-ghost-b.jpg",
+     "id": "9-vos-sykriss-serpentfolk-ghost-b"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-dieter-premium-figure",
+   "name": "Premium Figure: Dieter",
+   "info": [
+    "Box of 1 visible mini",
+    "1 Miniature",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-dieter-premium-figure",
+   "minis": [
+    {
+     "number": "",
+     "name": "Dieter",
+     "rarity": "Unique",
+     "size": "Gargantuan",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/dieter.jpg",
+     "id": "dieter"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-characters-of-taldorei",
+   "name": "Characters of Tal'Dorei",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Feb 1, 2022"
+   ],
+   "release": "Feb 1, 2022",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-characters-of-taldorei",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Matt Mercer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/matthew-mercer.jpg",
+     "id": "1-matt-mercer"
+    },
+    {
+     "number": "2",
+     "name": "Rivermaw Brawler",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/rivermaw-brawler.jpg",
+     "id": "2-rivermaw-brawler"
+    },
+    {
+     "number": "3",
+     "name": "Rivermaw Stormborn",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/rivermaw-stormborn.jpg",
+     "id": "3-rivermaw-stormborn"
+    },
+    {
+     "number": "4",
+     "name": "Kraghammer Barbarian",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/kraghammer-barbarian.jpg",
+     "id": "4-kraghammer-barbarian"
+    },
+    {
+     "number": "5",
+     "name": "Kraghammer Goat-Knight",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/kraghammer-goat-knight.jpg",
+     "id": "5-kraghammer-goat-knight"
+    },
+    {
+     "number": "6",
+     "name": "Goat-Knight Steed",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/goat-knight-steed.jpg",
+     "id": "6-goat-knight-steed"
+    },
+    {
+     "number": "7",
+     "name": "Kuul’tevir Rogue",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/kuultevir-rogue.jpg",
+     "id": "7-kuul-tevir-rogue"
+    },
+    {
+     "number": "8",
+     "name": "Kuul’tevir Fighter",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/kuultevir-fighter.jpg",
+     "id": "8-kuul-tevir-fighter"
+    },
+    {
+     "number": "9",
+     "name": "Verdant Guard Ranger",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/characters-of-taldorei/verdant-guard-ranger.jpg",
+     "id": "9-verdant-guard-ranger"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-wildemount-1",
+   "name": "Monsters of Wildemount 1 Box Set",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-wildemount-1",
+   "minis": [
+    {
+     "number": "1",
+     "name": "Core Spawn Crawler",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/core-spawn-crawler.jpg",
+     "id": "1-core-spawn-crawler"
+    },
+    {
+     "number": "2",
+     "name": "Core Spawn Emissary",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/core-spawn-emissary.jpg",
+     "id": "2-core-spawn-emissary"
+    },
+    {
+     "number": "3",
+     "name": "Core Spawn Seer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/core-spawn-seer.jpg",
+     "id": "3-core-spawn-seer"
+    },
+    {
+     "number": "4",
+     "name": "Husk Zombie",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/husk-zombie.jpg",
+     "id": "4-husk-zombie"
+    },
+    {
+     "number": "5",
+     "name": "Shadowghast",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/shadowghast.jpg",
+     "id": "5-shadowghast"
+    },
+    {
+     "number": "6",
+     "name": "Aeorian Absorber",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/aeorian-absorber.jpg",
+     "id": "6-aeorian-absorber"
+    },
+    {
+     "number": "7",
+     "name": "Aeorian Nullifier",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/aeorian-nullifier_pre.jpg",
+     "id": "7-aeorian-nullifier"
+    },
+    {
+     "number": "8",
+     "name": "Aeorian Reverser",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/aeorian-reverser.jpg",
+     "id": "8-aeorian-reverser"
+    },
+    {
+     "number": "9",
+     "name": "Nergaliid",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-1/nergaliid.jpg",
+     "id": "9-nergaliid"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-wildemount-2",
+   "name": "Monsters of Wildemount 2 Box Set",
+   "info": [
+    "Box of visible minis",
+    "7 miniatures",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-wildemount-2",
+   "minis": [
+    {
+     "number": "10",
+     "name": "Sahuagin Warlock of Uk'otoa",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/sahuagin-warlock-of-ukotoa.jpg",
+     "id": "10-sahuagin-warlock-of-uk-otoa"
+    },
+    {
+     "number": "11",
+     "name": "Sea Fury",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/sea-fury.jpg",
+     "id": "11-sea-fury"
+    },
+    {
+     "number": "12",
+     "name": "Gearkeeper Construct",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/gearkeeper-construct.jpg",
+     "id": "12-gearkeeper-construct"
+    },
+    {
+     "number": "13",
+     "name": "Gloomstalker",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/gloomstalker.jpg",
+     "id": "13-gloomstalker"
+    },
+    {
+     "number": "14",
+     "name": "Merrow Shallowpriest",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/merrow-shallowpriest.jpg",
+     "id": "14-merrow-shallowpriest"
+    },
+    {
+     "number": "15",
+     "name": "Moorbounder",
+     "rarity": "Unique",
+     "size": "Large",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/moorbounder.jpg",
+     "id": "15-moorbounder"
+    },
+    {
+     "number": "16",
+     "name": "Swavain Basilisk",
+     "rarity": "Unique",
+     "size": "Huge",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/monsters-of-wildemount-2/swavain-basilisk.jpg",
+     "id": "16-swavain-basilisk"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-factions-dwendalian-empire",
+   "name": "Factions of Wildemount Dwendalian Empire Box Set",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-factions-dwendalian-empire",
+   "minis": [
+    {
+     "number": "18",
+     "name": "Volstrucker Agent",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/volstrucker-agent.jpg",
+     "id": "18-volstrucker-agent"
+    },
+    {
+     "number": "19",
+     "name": "Draconblood Dragonborn",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/draconblood-dragonborn.jpg",
+     "id": "19-draconblood-dragonborn"
+    },
+    {
+     "number": "20",
+     "name": "Ravenite Dragonborn",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/ravenite-dragonborn.jpg",
+     "id": "20-ravenite-dragonborn"
+    },
+    {
+     "number": "21",
+     "name": "Dwendalian Aristocrat",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/dwendalian-aristocrat.jpg",
+     "id": "21-dwendalian-aristocrat"
+    },
+    {
+     "number": "22",
+     "name": "Dwendalian Farmer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/dwendalian-farmer.jpg",
+     "id": "22-dwendalian-farmer"
+    },
+    {
+     "number": "23",
+     "name": "Dwendalian Crownsguard",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/dwendalian-crownsguard.jpg",
+     "id": "23-dwendalian-crownsguard"
+    },
+    {
+     "number": "24",
+     "name": "Righteous Brand Soldier",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/righteous-brand-soldier.jpg",
+     "id": "24-righteous-brand-soldier"
+    },
+    {
+     "number": "25",
+     "name": "Hills of Pride's Call Farmer",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/hils-of-prides-call-farmer.jpg",
+     "id": "25-hills-of-pride-s-call-farmer"
+    },
+    {
+     "number": "26",
+     "name": "Pumat Sol",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/wildemount-empire/pumat-sol.jpg",
+     "id": "26-pumat-sol"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-factions-kryn-dynasty-and-xhorhas",
+   "name": "Factions of Wildemount Kryn Dynasty & Xhorhas Box Set",
+   "info": [
+    "Box of visible minis",
+    "9 miniatures",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-factions-kryn-dynasty-and-xhorhas",
+   "minis": [
+    {
+     "number": "27",
+     "name": "Lotusden Halfling",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/lotusden-halfling.jpg",
+     "id": "27-lotusden-halfling"
+    },
+    {
+     "number": "28",
+     "name": "Dark Elf Rogue",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/dark-elf-rogue.jpg",
+     "id": "28-dark-elf-rogue"
+    },
+    {
+     "number": "29",
+     "name": "Echo Knight",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/echo-knight.jpg",
+     "id": "29-echo-knight"
+    },
+    {
+     "number": "30",
+     "name": "Echo Knight Echo",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/echo-knight-echo.jpg",
+     "id": "30-echo-knight-echo"
+    },
+    {
+     "number": "31",
+     "name": "Trader of Kryn",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/trader-of-kryn.jpg",
+     "id": "31-trader-of-kryn"
+    },
+    {
+     "number": "32",
+     "name": "Kryn Noble",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/kryn-noble.jpg",
+     "id": "32-kryn-noble"
+    },
+    {
+     "number": "33",
+     "name": "Graviturgy Wizard",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/graviturgy-wizard.jpg",
+     "id": "33-graviturgy-wizard"
+    },
+    {
+     "number": "34",
+     "name": "Chronurgy Wizard",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/chronurgy-wizard.jpg",
+     "id": "34-chronurgy-wizard"
+    },
+    {
+     "number": "35",
+     "name": "Dunamancy Wizard",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/kryn-dynasty-and-xhorhas/dunamancy-wizard.jpg",
+     "id": "35-dunamancy-wizard"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-factions-clovis-concord-and-menagerie-coast",
+   "name": "Factions of Wildemount Clovis Concord & Menagerie Coast Box Set",
+   "info": [
+    "Box of visible minis",
+    "8 miniatures",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-factions-clovis-concord-and-menagerie-coast",
+   "minis": [
+    {
+     "number": "36",
+     "name": "The Hollow One",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/the-hollow-one.jpg",
+     "id": "36-the-hollow-one"
+    },
+    {
+     "number": "37",
+     "name": "Fisherman of Clovis",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/fisherman-of-clovis.jpg",
+     "id": "37-fisherman-of-clovis"
+    },
+    {
+     "number": "38",
+     "name": "Clovis Noble",
+     "rarity": "Unique",
+     "size": "Small",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/clovis-noble.jpg",
+     "id": "38-clovis-noble"
+    },
+    {
+     "number": "39",
+     "name": "Clovis Concord Zhelezo",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/clovis-concord-zhelezo.jpg",
+     "id": "39-clovis-concord-zhelezo"
+    },
+    {
+     "number": "40",
+     "name": "Shore Warden Soldier",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/shore-warden-soldier.jpg",
+     "id": "40-shore-warden-soldier"
+    },
+    {
+     "number": "41",
+     "name": "The Grinner",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/the-grinner.jpg",
+     "id": "41-the-grinner"
+    },
+    {
+     "number": "42",
+     "name": "Blood Hunter",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/blood-hunter.jpg",
+     "id": "42-blood-hunter"
+    },
+    {
+     "number": "43",
+     "name": "Pallid Elf",
+     "rarity": "Unique",
+     "size": "Medium",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/clovis-concord-and-menagerie-coast/pallid-elf.jpg",
+     "id": "43-pallid-elf"
+    }
+   ],
+   "category": "Critical Role",
+   "group": ""
+  },
+  {
+   "id": "critical-role-monsters-of-wildemount-udaak-premium-figure",
+   "name": "Monsters of Wildemount Udaak Premium Figure",
+   "info": [
+    "Box of 1 visible mini",
+    "1 miniature",
+    "Jun 2, 2021"
+   ],
+   "release": "Jun 2, 2021",
+   "url": "https://www.minisgallery.com/index.php?id=critical-role-monsters-of-wildemount-udaak-premium-figure",
+   "minis": [
+    {
+     "number": "",
+     "name": "Udaak",
+     "rarity": "Unique",
+     "size": "Gargantuan",
+     "image": "https://www.minisgallery.com/images/minis/critical-role/premium-figure/udaak.jpg",
+     "id": "udaak"
+    }
+   ],
+   "category": "Critical Role",
    "group": ""
   }
  ]

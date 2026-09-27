@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scrape all D&D Icons of the Realms sets from minisgallery.com into public/data/minis.json and public/data/minis.js."""
+"""Scrape all D&D Icons of the Realms and Critical Role sets from minisgallery.com into public/data/minis.json and public/data/minis.js."""
 import html
 import json
 import re
@@ -62,8 +62,9 @@ CATEGORIES = [
     ("icons-of-the-realms-special-release-sets", "Special Release Sets"),
     ("icons-of-the-realms-premium-figures-gallery", "Premium Figures"),
     ("icons-of-the-realms-promos", "Promos"),
+    ("critical-role-miniatures", "Critical Role"),
 ]
-NAV = {"main-menu", "dungeons-and-dragons", "icons-of-the-realms"} | {c for c, _ in CATEGORIES}
+NAV = {"main-menu", "dungeons-and-dragons", "icons-of-the-realms", "critical-role"} | {c for c, _ in CATEGORIES}
 
 
 def content_links(page):
@@ -97,7 +98,7 @@ def main():
     for slug, label in CATEGORIES:
         crawl(slug, label, "", seen, sets)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    data = {"source": BASE + "index.php?id=icons-of-the-realms", "scraped": time.strftime("%Y-%m-%d"), "sets": sets}
+    data = {"source": BASE, "scraped": time.strftime("%Y-%m-%d"), "sets": sets}
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
     # Same data as a script so index.html works when opened straight from disk (file://).
     OUT.with_suffix(".js").write_text("window.MINIS_DATA = " + json.dumps(data, ensure_ascii=False) + ";\n")
