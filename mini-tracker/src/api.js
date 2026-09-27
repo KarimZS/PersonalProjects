@@ -18,6 +18,14 @@ router.use((req, res, next) => {
   if (req.method !== "GET" && !req.is("application/json")) return res.status(415).json({ error: "Expected JSON." });
   next();
 });
+// Browser diagnostics (JS errors; tap targets in ?debug mode) written to the server log. No account data.
+const logLimit = auth.rateLimit({ windowMs: 60e3, max: 60 });
+router.post("/client-log", logLimit, (req, res) => {
+  const clip = (v) => JSON.stringify(v ?? null).slice(0, 2000);
+  console.log(`[client] ${String(req.body?.kind || "?").slice(0, 40)} ${clip(req.body?.data)} ua=${String(req.body?.ua || "").slice(0, 300)}`);
+  res.status(204).end();
+});
+
 router.use((req, res, next) => (pool ? next() : res.status(503).json({ error: "Accounts are not available right now." })));
 router.use(auth.loadUser);
 

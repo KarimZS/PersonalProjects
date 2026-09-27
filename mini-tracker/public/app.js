@@ -807,4 +807,5 @@
   $("scraped").textContent = DATA.scraped ? `(updated ${DATA.scraped})` : "";
   renderAll();
   initAccount();
+  window.__appReady = true;
 })();
