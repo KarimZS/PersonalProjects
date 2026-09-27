@@ -33,7 +33,22 @@ app.use("/api", require("./src/api"));
 // no-cache = always revalidate (cheap, via ETag), so a deploy never mixes new HTML with stale JS.
 app.use(express.static(path.join(__dirname, "public"), { setHeaders: (res) => res.setHeader("Cache-Control", "no-cache") }));
 
+// Collections are stored by mini key, so every key ever shipped must still exist in the catalog.
+// Failing here fails the deploy's health check, and Railway keeps the previous version serving.
+function checkPublishedKeys() {
+  const catalog = JSON.parse(fs.readFileSync(path.join(PUBLIC, "data", "minis.json"), "utf8"));
+  const keys = new Set(catalog.sets.flatMap((s) => s.minis.map((m) => s.id + "/" + m.id)));
+  const published = fs.readFileSync(path.join(__dirname, "data", "published-keys.txt"), "utf8")
+    .split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("#"));
+  const missing = published.filter((k) => !keys.has(k));
+  if (missing.length) {
+    throw new Error(`${missing.length} published mini keys are missing from minis.json (e.g. ${missing.slice(0, 3).join(", ")}). ` +
+      "Users' collections reference them; restore them before deploying.");
+  }
+}
+
 async function start() {
+  checkPublishedKeys();
   if (pool) await migrate();
   else console.warn("DATABASE_URL is not set: running without accounts (guest mode only).");
   app.listen(PORT, () => console.log(`Mini Tracker on http://localhost:${PORT}`));

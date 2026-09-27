@@ -3,6 +3,7 @@
 import html
 import json
 import re
+import sys
 import time
 import urllib.request
 from pathlib import Path
@@ -93,16 +94,43 @@ def crawl(slug, category, group, seen, sets):
             crawl(child, category, text(title.group(1)) if title else child, seen, sets)
 
 
+PUBLISHED = Path(__file__).resolve().parent.parent / "data" / "published-keys.txt"
+
+
+def read_published():
+    if not PUBLISHED.exists():
+        return []
+    return [l.strip() for l in PUBLISHED.read_text().splitlines() if l.strip() and not l.startswith("#")]
+
+
 def main():
     sets, seen = [], set()
     for slug, label in CATEGORIES:
         crawl(slug, label, "", seen, sets)
+
+    # Users' collections are keyed by "<set id>/<mini id>". A key that disappears orphans every
+    # collection entry that uses it, so refuse to write data that drops any previously shipped key.
+    published = read_published()
+    keys = {s["id"] + "/" + m["id"] for s in sets for m in s["minis"]}
+    missing = [k for k in published if k not in keys]
+    if missing:
+        print(f"\nREFUSING TO WRITE: {len(missing)} previously published mini keys are missing from the new scrape:")
+        for k in missing[:50]:
+            print("  ", k)
+        print("Users' saved collections reference these keys. Fix the scrape (or keep the old entries)")
+        print("so every key in data/published-keys.txt is still present. Nothing was written.")
+        sys.exit(1)
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     data = {"source": BASE, "scraped": time.strftime("%Y-%m-%d"), "sets": sets}
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
     # Same data as a script so index.html works when opened straight from disk (file://).
     OUT.with_suffix(".js").write_text("window.MINIS_DATA = " + json.dumps(data, ensure_ascii=False) + ";\n")
-    print(f"{len(sets)} sets, {sum(len(s['minis']) for s in sets)} minis -> {OUT}")
+    new = sorted(keys - set(published))
+    if new:
+        with PUBLISHED.open("a") as f:
+            f.write("".join(k + "\n" for k in new))
+    print(f"{len(sets)} sets, {sum(len(s['minis']) for s in sets)} minis -> {OUT} ({len(new)} new keys published)")
 
 
 if __name__ == "__main__":

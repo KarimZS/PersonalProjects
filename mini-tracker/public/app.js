@@ -23,7 +23,9 @@
       m.baseRarity = m.rarity.replace(/\s*\(?variant\)?/i, "").trim() || "Unknown";
       m.variant = /variant/i.test(m.rarity);
       m.sizeGroup = SIZE_ORDER.includes(m.size) ? m.size : "Other";
-      m.search = (m.name + " " + m.number + " " + m.rarity + " " + m.size).toLowerCase();
+      m.search = [m.name, set.name, set.group || ""].join(" ").toLowerCase(); // rarity/size have their own filters
+      m.num = parseInt(m.number, 10); // NaN for unnumbered minis
+      m.numNorm = m.number.toLowerCase().replace(/[^a-z0-9]/g, ""); // "10 - Alt" -> "10alt", "12a" -> "12a"
       minis.push(m);
     });
   }
@@ -178,8 +180,26 @@
     document.title = (ui.set !== ALL ? (set ? set.name : sc.name) + " · " : "") + "Mini Tracker";
   }
 
+  // "zombie 1" -> every word must match. A number ("1", "#1") matches the mini's number in its set,
+  // including variants like 1A / "1 - Alt" but not 10; "12a" matches 12A. After a word it can also complete a set
+  // name ("monster manual collection 1 zombie"), but "zombie 1" means zombies numbered 1. Other words match
+  // the name or the set name (partial words work: "zomb").
+  function parseQuery(q) {
+    const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    return words.map((word, i) => {
+      const num = word.match(/^#?(\d+)([a-z]*)$/);
+      if (num) {
+        const n = +num[1], exact = num[1] + num[2];
+        return num[2] ? (m) => m.numNorm === exact || m.numNorm.startsWith(exact) && !/\d/.test(m.numNorm[exact.length] || "")
+                      : (m) => m.num === n || new RegExp(`\\b${n}\\b`).test(m.name) || // a "2" in a mini's own name
+                          (i > 0 && m.search.includes(words[i - 1] + " " + word)); // part of a set name: "collection 1"
+      }
+      return (m) => m.search.includes(word);
+    });
+  }
+
   function filtered() {
-    const q = ui.q.trim().toLowerCase();
+    const terms = parseQuery(ui.q);
     let list = scope().filter((m) => {
       const c = count(m);
       if (ui.status === "owned" && !c) return false;
@@ -188,7 +208,7 @@
       if (ui.status === "wish" && !col.wish[m.key]) return false;
       if (ui.rarity && m.baseRarity !== ui.rarity) return false;
       if (ui.size && m.sizeGroup !== ui.size) return false;
-      if (q && !m.search.includes(q)) return false;
+      if (terms.length && !terms.every((t) => t(m))) return false;
       return true;
     });
     const cmp = {
