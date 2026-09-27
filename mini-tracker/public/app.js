@@ -134,8 +134,19 @@
     owned: (a, b) => b.s.owned - a.s.owned || b.s.owned / b.s.n - a.s.owned / a.s.n,
   };
 
+  // While filtering (text or "Started only") categories open by default so matches are visible, but the
+  // user can still collapse/expand them; those choices are temporary and reset when the filter changes.
+  let filterOpen = {}, filterKey = "";
+  function isCatOpen(id, filtering) {
+    if (!filtering) return !!ui.open[id];
+    return id in filterOpen ? filterOpen[id] : true;
+  }
+
   function renderSetList() {
     const q = $("setSearch").value.trim().toLowerCase();
+    const filtering = !!q || ui.startedOnly;
+    const key = q + "|" + ui.startedOnly;
+    if (key !== filterKey) { filterKey = key; filterOpen = {}; }
     const started = (set) => set.minis.some((m) => count(m));
     const match = (set) => (!q || set.name.toLowerCase().includes(q) || set.group.toLowerCase().includes(q)) && (!ui.startedOnly || started(set));
     let html = scopeItem(ALL, "All sets", minis, "all", (s) => `${s.owned} of ${s.n} minis · ${sets.length} sets`);
@@ -151,7 +162,7 @@
       const shown = cat.sets.filter(match);
       if (!shown.length) continue;
       shownAny = true;
-      const open = q || ui.startedOnly || ui.open[cat.id];
+      const open = isCatOpen(cat.id, filtering);
       html += `<div class="cat${open ? " open" : ""}">
         <div class="cat-head">
           ${scopeItem(cat.id, cat.name, cat.sets.flatMap((x) => x.minis), "cat-item", (s) => `${s.owned} of ${s.n} minis · ${cat.sets.length} sets`)}
@@ -430,8 +441,12 @@
     const toggle = e.target.closest("[data-toggle]");
     if (toggle) {
       const id = toggle.dataset.toggle;
-      if (ui.open[id]) delete ui.open[id]; else ui.open[id] = true;
-      persistUi();
+      const filtering = !!$("setSearch").value.trim() || ui.startedOnly;
+      if (filtering) filterOpen[id] = !isCatOpen(id, true);
+      else {
+        if (ui.open[id]) delete ui.open[id]; else ui.open[id] = true;
+        persistUi();
+      }
       renderSetList();
       return;
     }
