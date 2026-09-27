@@ -34,12 +34,15 @@ def parse_set(slug, page):
         size = re.search(r'<div class="miniSize">(.*?)</div>', box, re.S)
         img = re.search(r'<img[^>]*src="([^"]+)"', box)
         num = re.search(r'miniInfo2_num[^"]*">(.*?)</div>', box, re.S)
+        # Minis MinisGallery has photographed link to their own detail page; others have none.
+        page = re.search(r'href="(index\.php\?id=\d+&(?:amp;)?task=image[^"]*)"', box)
         minis.append({
             "number": text(num.group(1)).strip("()") if num else "",
             "name": text(name.group(1)),
             "rarity": text(rarity.group(1)) if rarity else "",
             "size": text(size.group(1)) if size else "",
             "image": BASE + img.group(1) if img else "",
+            "page": BASE + html.unescape(page.group(1)) if page else "",
         })
     # Stable per-mini id used as the key for saved collection data.
     seen = {}

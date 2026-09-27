@@ -204,7 +204,12 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .card .wish.on { color: var(--accent); }
 .card .wish.on svg { fill: currentColor; }
 .card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-.card .name { font-weight: 600; font-size: 14px; line-height: 1.25; }
+.card .name { font-weight: 600; font-size: 14px; line-height: 1.25; color: var(--text); text-decoration: none; }
+.card .name:hover { text-decoration: underline; }
+.ext { width: 12px; height: 12px; margin-left: 4px; vertical-align: -1px; color: var(--muted); }
+.source-link { font-size: 14px; text-decoration: none; }
+.source-link:hover { text-decoration: underline; }
+.source-link .ext { color: currentColor; }
 .card .tags { display: flex; flex-wrap: wrap; gap: 4px; font-size: 11px; }
 .tag { padding: 2px 7px; border-radius: 6px; background: var(--panel-2); color: var(--muted); }
 .tag.rarity { color: #111; font-weight: 600; }

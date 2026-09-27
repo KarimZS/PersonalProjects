@@ -253,6 +253,10 @@
     return list;
   }
 
+  // The mini's own MinisGallery page, or its set's page for minis the site hasn't photographed yet.
+  const miniUrl = (m) => m.page || m.set.url;
+  const EXT = `<svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>`;
+
   function cardHtml(m, showSet) {
     const c = count(m);
     const wish = !!col.wish[m.key];
@@ -266,7 +270,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
       </button>
       <div class="body">
-        <div class="name">${esc(m.name)}</div>
+        <a class="name" href="${esc(miniUrl(m))}" target="_blank" rel="noopener" title="View on MinisGallery">${esc(m.name)}${EXT}</a>
         <div class="tags">
           <span class="tag rarity ${rarityClass(m.rarity)}">${esc(m.rarity || "Unknown")}</span>
           ${m.size ? `<span class="tag">${esc(m.size)}</span>` : ""}
@@ -355,6 +359,7 @@
       <img src="${esc(m.image)}" alt="${esc(m.name)}">
       <div class="info">
         <h3>${esc(m.name)}</h3>
+        <a class="source-link" href="${esc(miniUrl(m))}" target="_blank" rel="noopener">View on MinisGallery${EXT}</a>
         <div class="tags">
           <span class="tag rarity ${rarityClass(m.rarity)}">${esc(m.rarity || "Unknown")}</span>
           ${m.size ? `<span class="tag">${esc(m.size)}</span>` : ""}
