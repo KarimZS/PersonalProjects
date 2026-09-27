@@ -23,16 +23,31 @@
       </div>
     </div>
     <div class="overall" id="overall"></div>
-    <button class="icon-btn" id="openMenu" aria-label="Backup and settings" aria-haspopup="true">
+    <button class="login-btn" id="loginBtn" hidden>Log in</button>
+    <button class="avatar" id="openMenuUser" aria-label="Account and settings" aria-haspopup="true" hidden>
+      <span id="avatarInitial"></span><i class="sync-dot" id="syncDot"></i>
+    </button>
+    <button class="icon-btn" id="openMenu" aria-label="Settings" aria-haspopup="true">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
     </button>
     <div class="menu" id="menu" hidden>
+      <div class="menu-account" id="menuAccount"></div>
       <button id="exportBtn">Export collection (JSON)</button>
       <button id="importBtn">Import collection…</button>
       <button id="resetBtn" class="danger">Reset collection</button>
+      <button id="logoutBtn" hidden>Log out</button>
+      <button id="deleteAccountBtn" class="danger" hidden>Delete account…</button>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
     </div>
   </header>
+
+  <div class="guest-banner" id="guestBanner" hidden>
+    <span>Your collection is only saved in this browser. <strong>Create a free account</strong> to keep it safe and use it on any device.</span>
+    <button class="btn primary" data-auth="signup">Create account</button>
+    <button class="icon-btn" id="dismissBanner" aria-label="Dismiss">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
 
   <div class="layout">
     <aside class="sidebar" id="sidebar" aria-label="Sets">
@@ -78,7 +93,7 @@
         Mini data and images from
         <a href="https://www.minisgallery.com/index.php?id=icons-of-the-realms" target="_blank" rel="noopener">MinisGallery</a>
         <span id="scraped"></span>. D&amp;D and Icons of the Realms are trademarks of Wizards of the Coast.
-        Your collection is saved in this browser; use Export to back it up.
+        <span id="footSave">Your collection is saved in this browser; use Export to back it up.</span>
       </footer>
     </main>
   </div>
@@ -88,6 +103,28 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button></form>
     <div id="detailBody"></div>
+  </dialog>
+
+  <dialog id="authDialog" class="auth">
+    <form id="authForm" novalidate>
+      <button type="button" class="icon-btn close" id="authClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="auth-tabs" id="authTabs" role="tablist">
+        <button type="button" role="tab" data-mode="login">Log in</button>
+        <button type="button" role="tab" data-mode="signup">Create account</button>
+      </div>
+      <h2 id="authTitle"></h2>
+      <p class="auth-sub" id="authSub"></p>
+      <label id="emailField">Email
+        <input type="email" name="email" id="authEmail" autocomplete="email" required>
+      </label>
+      <label>Password
+        <input type="password" name="password" id="authPassword" required minlength="8">
+      </label>
+      <p class="auth-error" id="authError" role="alert" hidden></p>
+      <button type="submit" class="btn primary block" id="authSubmit"></button>
+    </form>
   </dialog>
 
   <div class="toast" id="toast" role="status" hidden></div>

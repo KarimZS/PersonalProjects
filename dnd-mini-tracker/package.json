@@ -1,7 +1,7 @@
 {
   "name": "dnd-mini-tracker",
   "version": "1.0.0",
-  "description": "Collection tracker for D&D Icons of the Realms core set miniatures",
+  "description": "Collection tracker for D&D Icons of the Realms miniatures, with accounts",
   "private": true,
   "main": "server.js",
   "scripts": {
@@ -9,6 +9,10 @@
     "scrape": "python3 scripts/scrape.py"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "pg": "^8.23.0"
   }
 }

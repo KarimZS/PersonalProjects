@@ -72,7 +72,10 @@
   let col = load(STORE_KEY, {});
   col.owned = col.owned || {};
   col.wish = col.wish || {};
-  const persist = () => save(STORE_KEY, { owned: col.owned, wish: col.wish, updated: new Date().toISOString() });
+  // Logged in: changes sync to the server. Guest: they live in this browser only.
+  let user = null;
+  let accountsAvailable = false;
+  const persist = () => (user ? scheduleSync() : save(STORE_KEY, { owned: col.owned, wish: col.wish, updated: new Date().toISOString() }));
 
   const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null }, load(UI_KEY, {}));
   ui.open = ui.open || { [categories[0].id]: true };
@@ -106,6 +109,7 @@
     $("overall").innerHTML =
       `<div class="bar${s.owned === s.n ? " done" : ""}"><span style="width:${(s.owned / s.n) * 100}%"></span></div>` +
       `<span><strong>${s.owned}</strong> / ${s.n}</span>`;
+    updateBanner();
   }
 
   function scopeItem(id, name, list, extraClass, meta) {
@@ -479,11 +483,230 @@
   });
   // Keep tabs in sync when the collection changes in another tab.
   window.addEventListener("storage", (e) => {
-    if (e.key !== STORE_KEY) return;
+    if (e.key !== STORE_KEY || user) return;
     const next = load(STORE_KEY, {});
     col.owned = next.owned || {}; col.wish = next.wish || {};
     renderAll();
   });
+
+  // ---------- accounts & sync ----------
+  async function api(method, url, body, opts = {}) {
+    const res = await fetch("/api" + url, {
+      method,
+      credentials: "same-origin",
+      headers: body ? { "Content-Type": "application/json" } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      keepalive: !!opts.keepalive,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw Object.assign(new Error(data.error || "Something went wrong."), { status: res.status });
+    return data;
+  }
+
+  // What the server has; each sync sends only the minis that differ from it.
+  let synced = { owned: {}, wish: {} };
+  let syncTimer = null, syncing = false, retryDelay = 2000, syncState = "saved";
+
+  function pendingItems() {
+    const keys = new Set([...Object.keys(col.owned), ...Object.keys(col.wish), ...Object.keys(synced.owned), ...Object.keys(synced.wish)]);
+    const items = [];
+    for (const key of keys) {
+      const owned = col.owned[key] || 0, wish = !!col.wish[key];
+      if (owned !== (synced.owned[key] || 0) || wish !== !!synced.wish[key]) items.push({ key, owned, wish });
+    }
+    return items;
+  }
+
+  function setSyncState(state) {
+    syncState = state;
+    $("syncDot").className = "sync-dot " + state;
+    $("openMenuUser").title = { saved: "All changes saved", saving: "Saving…", error: "Not saved yet — retrying" }[state];
+    const el = $("menuAccount").querySelector(".sync-text");
+    if (el) el.textContent = $("openMenuUser").title;
+  }
+
+  function scheduleSync(delay = 600) {
+    setSyncState("saving");
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(flushSync, delay);
+  }
+
+  async function flushSync() {
+    if (!user) return;
+    if (syncing) return scheduleSync();
+    const items = pendingItems();
+    if (!items.length) return setSyncState("saved");
+    syncing = true;
+    try {
+      await api("PATCH", "/collection", { items });
+      for (const it of items) {
+        if (it.owned) synced.owned[it.key] = it.owned; else delete synced.owned[it.key];
+        if (it.wish) synced.wish[it.key] = 1; else delete synced.wish[it.key];
+      }
+      retryDelay = 2000;
+      setSyncState(pendingItems().length ? "saving" : "saved");
+      if (syncState === "saving") scheduleSync(0);
+    } catch (err) {
+      if (err.status === 401) {
+        signedOut("You were logged out. Log in again to keep saving your collection.");
+      } else {
+        setSyncState("error");
+        syncTimer = setTimeout(flushSync, retryDelay);
+        retryDelay = Math.min(retryDelay * 2, 60000);
+      }
+    } finally {
+      syncing = false;
+    }
+  }
+
+  // Last-chance save when the tab closes with unsaved changes.
+  window.addEventListener("pagehide", () => {
+    if (!user) return;
+    const items = pendingItems();
+    if (items.length) api("PATCH", "/collection", { items }, { keepalive: true }).catch(() => {});
+  });
+  window.addEventListener("online", () => { if (user && syncState === "error") flushSync(); });
+
+  // Loads the account's collection; anything saved in this browser as a guest is added to it.
+  async function signedIn(u, { merge = true } = {}) {
+    user = u;
+    const server = await api("GET", "/collection");
+    synced = { owned: { ...server.owned }, wish: { ...server.wish } };
+    const local = load(STORE_KEY, {});
+    col = { owned: { ...server.owned }, wish: { ...server.wish } };
+    let added = 0;
+    if (merge) {
+      for (const [k, n] of Object.entries(local.owned || {})) {
+        if (byKey.has(k) && n > (col.owned[k] || 0)) { col.owned[k] = n; added++; }
+      }
+      for (const k of Object.keys(local.wish || {})) if (byKey.has(k) && !col.wish[k]) { col.wish[k] = 1; added++; }
+    }
+    try { localStorage.removeItem(STORE_KEY); } catch { /* ignore */ }
+    renderAccount();
+    renderAll();
+    if (added) {
+      scheduleSync(0);
+      toast(`Added ${added} mini${added === 1 ? "" : "s"} saved in this browser to your account`);
+    } else {
+      setSyncState("saved");
+    }
+  }
+
+  function signedOut(message) {
+    clearTimeout(syncTimer);
+    user = null;
+    col = { owned: {}, wish: {} };
+    synced = { owned: {}, wish: {} };
+    renderAccount();
+    renderAll();
+    if (message) toast(message);
+  }
+
+  function renderAccount() {
+    $("loginBtn").hidden = !!user;
+    $("openMenuUser").hidden = !user;
+    $("openMenu").hidden = !!user;
+    $("logoutBtn").hidden = !user;
+    $("deleteAccountBtn").hidden = !user;
+    $("avatarInitial").textContent = user ? user.email[0].toUpperCase() : "";
+    $("menuAccount").innerHTML = user
+      ? `<div class="who">${esc(user.email)}</div><div class="sync-text"></div>`
+      : `<div class="who">Not logged in</div><div class="menu-auth"><button data-auth="login">Log in</button><button data-auth="signup">Create account</button></div>`;
+    $("footSave").textContent = user
+      ? "Your collection is saved to your account."
+      : "Your collection is saved in this browser; create an account to keep it safe.";
+    updateBanner();
+    if (user) setSyncState(syncState);
+  }
+
+  function updateBanner() {
+    const dismissed = load(UI_KEY + ":banner", false);
+    $("guestBanner").hidden = !accountsAvailable || !!user || dismissed || !Object.keys(col.owned).length;
+  }
+  $("dismissBanner").addEventListener("click", () => { save(UI_KEY + ":banner", true); updateBanner(); });
+
+  // ---------- auth dialog ----------
+  let authMode = "login";
+  const AUTH_TEXT = {
+    login: { title: "Welcome back", sub: "Log in to see your collection.", submit: "Log in", pw: "current-password" },
+    signup: { title: "Create your free account", sub: "Save your collection and use it on any device.", submit: "Create account", pw: "new-password" },
+    delete: { title: "Delete your account", sub: "This permanently deletes your account and collection. Enter your password to confirm.", submit: "Delete account forever", pw: "current-password" },
+  };
+
+  function openAuth(mode) {
+    authMode = mode;
+    const t = AUTH_TEXT[mode];
+    $("authTitle").textContent = t.title;
+    $("authSub").textContent = t.sub;
+    $("authSubmit").textContent = t.submit;
+    $("authSubmit").classList.toggle("danger", mode === "delete");
+    $("authPassword").autocomplete = t.pw;
+    $("authPassword").value = "";
+    $("authTabs").hidden = mode === "delete";
+    $("emailField").hidden = mode === "delete";
+    document.querySelectorAll("#authTabs [data-mode]").forEach((b) => b.setAttribute("aria-selected", b.dataset.mode === mode));
+    $("authError").hidden = true;
+    $("menu").hidden = true;
+    if (!$("authDialog").open) $("authDialog").showModal();
+    (mode === "delete" || $("authEmail").value ? $("authPassword") : $("authEmail")).focus();
+  }
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-auth]");
+    if (b) openAuth(b.dataset.auth);
+  });
+  $("authTabs").addEventListener("click", (e) => { const b = e.target.closest("[data-mode]"); if (b) openAuth(b.dataset.mode); });
+  $("authClose").addEventListener("click", () => $("authDialog").close());
+  $("loginBtn").addEventListener("click", () => openAuth("login"));
+  $("deleteAccountBtn").addEventListener("click", () => openAuth("delete"));
+
+  $("authForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = $("authEmail").value.trim();
+    const password = $("authPassword").value;
+    const showError = (msg) => { $("authError").textContent = msg; $("authError").hidden = false; };
+    if (authMode !== "delete" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError("Enter a valid email address.");
+    if (authMode === "signup" && password.length < 8) return showError("Password must be at least 8 characters.");
+    if (!password) return showError("Enter your password.");
+    $("authSubmit").disabled = true;
+    try {
+      if (authMode === "delete") {
+        await api("DELETE", "/account", { password });
+        $("authDialog").close();
+        signedOut("Your account has been deleted.");
+      } else {
+        const { user: u } = await api("POST", "/" + authMode, { email, password });
+        $("authDialog").close();
+        await signedIn(u);
+        if (authMode === "signup") toast("Account created — your collection now saves automatically");
+      }
+    } catch (err) {
+      showError(err.message);
+    } finally {
+      $("authSubmit").disabled = false;
+    }
+  });
+
+  $("logoutBtn").addEventListener("click", async () => {
+    $("menu").hidden = true;
+    await flushSync();
+    try { await api("POST", "/logout", {}); } catch { /* cookie is cleared server-side when possible */ }
+    signedOut("Logged out");
+  });
+  $("openMenuUser").addEventListener("click", (e) => { e.stopPropagation(); $("menu").hidden = !$("menu").hidden; });
+
+  async function initAccount() {
+    try {
+      const { user: u } = await api("GET", "/me");
+      accountsAvailable = true;
+      if (u) await signedIn(u);
+      else renderAccount();
+    } catch {
+      // Accounts unavailable (no server/database, or opened from disk): guest mode only.
+      $("loginBtn").hidden = true;
+      $("menuAccount").hidden = true;
+    }
+  }
 
   // ---------- init ----------
   const hashSet = decodeURIComponent(location.hash.slice(1));
@@ -494,4 +717,5 @@
   if (startSet) ui.open["cat:" + startSet.category] = true;
   $("scraped").textContent = DATA.scraped ? `(updated ${DATA.scraped})` : "";
   renderAll();
+  initAccount();
 })();
