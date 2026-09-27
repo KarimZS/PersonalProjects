@@ -1,4 +1,4 @@
-# D&D Mini Tracker
+# Mini Tracker
 
 A mobile-friendly collection tracker for **D&D Icons of the Realms** miniatures.
 It covers every Icons of the Realms category on
@@ -53,8 +53,8 @@ because Railway has deprecated config-as-code. These settings live on the servic
 | Setting | Value |
 | --- | --- |
 | Source | this repo, branch `main` |
-| Root Directory | `/dnd-mini-tracker` |
-| Watch Paths | `/dnd-mini-tracker/**` (changes to other projects don't redeploy this one) |
+| Root Directory | `/mini-tracker` |
+| Watch Paths | `/mini-tracker/**` (changes to other projects don't redeploy this one) |
 | Healthcheck Path | `/health` |
 | Restart Policy | On failure |
 | Variable `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` (Railway Postgres in the same project, over the private network) |

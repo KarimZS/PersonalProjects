@@ -2,6 +2,7 @@
   "use strict";
 
   const DATA = window.MINIS_DATA;
+  // Storage keys keep the app's original name so existing guest collections survive the rename.
   const STORE_KEY = "dnd-mini-tracker:v1";
   const UI_KEY = "dnd-mini-tracker:ui";
   const ALL = "all";
@@ -174,7 +175,7 @@
       ${set && s.n ? `<div class="set-actions">
         <button class="btn" data-action="own-all">Mark all owned</button>
         <button class="btn" data-action="clear-set">Clear set</button></div>` : ""}`;
-    document.title = (ui.set !== ALL ? (set ? set.name : sc.name) + " · " : "") + "D&D Mini Tracker";
+    document.title = (ui.set !== ALL ? (set ? set.name : sc.name) + " · " : "") + "Mini Tracker";
   }
 
   function filtered() {
@@ -437,7 +438,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { $("menu").hidden = true; closeSidebar(); } });
 
   $("exportBtn").addEventListener("click", () => {
-    const payload = { app: "dnd-mini-tracker", version: 1, exported: new Date().toISOString(), owned: col.owned, wish: col.wish };
+    const payload = { app: "mini-tracker", version: 1, exported: new Date().toISOString(), owned: col.owned, wish: col.wish };
     const blob = new Blob([JSON.stringify(payload, null, 1)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);

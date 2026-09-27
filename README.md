@@ -4,7 +4,7 @@ A collection of independent projects. Each one lives in its own folder, with its
 
 | Project | Description |
 | --- | --- |
-| [`dnd-mini-tracker`](dnd-mini-tracker/) | Mobile-friendly collection tracker for all D&D Icons of the Realms miniatures (Node, deployed on Railway) |
+| [`mini-tracker`](mini-tracker/) | Mini Tracker: mobile-friendly miniatures collection tracker with accounts, currently covering D&D Icons of the Realms (Node, deployed on Railway) |
 
 ## Deploying on Railway
 
