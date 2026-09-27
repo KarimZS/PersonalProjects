@@ -79,8 +79,12 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   overflow-y: auto; overscroll-behavior: contain;
   border-right: 1px solid var(--line); background: var(--panel);
 }
-.sidebar-head { position: sticky; top: 0; z-index: 1; display: flex; gap: 8px; padding: 12px; background: var(--panel); border-bottom: 1px solid var(--line); }
-.sidebar-head input { flex: 1; }
+.sidebar-head { position: sticky; top: 0; z-index: 2; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.sidebar-row { display: flex; gap: 8px; align-items: center; }
+.sidebar-row input, .sidebar-row select { flex: 1; }
+.sidebar-row .chip { height: 40px; }
+.chip[aria-pressed=true] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.set-empty { padding: 20px 16px; color: var(--muted); font-size: 14px; }
 .main { flex: 1; min-width: 0; padding: 16px 20px 40px; }
 
 input[type=search], select {

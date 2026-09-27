@@ -80,9 +80,9 @@
   let accountsAvailable = false;
   const persist = () => (user ? scheduleSync() : save(STORE_KEY, { owned: col.owned, wish: col.wish, updated: new Date().toISOString() }));
 
-  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null }, load(UI_KEY, {}));
+  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null, setSort: "release", startedOnly: false }, load(UI_KEY, {}));
   ui.open = ui.open || { [categories[0].id]: true };
-  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort, open: ui.open });
+  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort, open: ui.open, setSort: ui.setSort, startedOnly: ui.startedOnly });
   ui.q = ""; ui.rarity = ""; ui.size = "";
 
   const count = (m) => col.owned[m.key] || 0;
@@ -123,17 +123,35 @@
       <div class="meta">${meta(s)}</div>
       <div class="bar"><span style="width:${s.pct}%"></span></div></button>`;
   }
-  const setItem = (set) => scopeItem(set.id, set.name, set.minis, "", (s) =>
-    `${esc(set.release)}${set.release ? " · " : ""}${s.n ? `${s.owned} / ${s.n}` : "not yet listed"}`);
+  const setItem = (set, showCategory) => scopeItem(set.id, set.name, set.minis, "", (s) =>
+    [showCategory ? esc(set.group || set.category) : esc(set.release), s.n ? `${s.owned} / ${s.n}` + (s.owned && s.owned < s.n ? ` · ${s.n - s.owned} to go` : "") : "not yet listed"]
+      .filter(Boolean).join(" · "));
+
+  // Sorted views are one flat list across categories, for finding what's closest to done.
+  const SET_SORTS = {
+    // Highest % first (ties: fewest missing); finished sets go last since there's nothing left to chase.
+    closest: (a, b) => (a.s.owned === a.s.n) - (b.s.owned === b.s.n) || b.s.owned / b.s.n - a.s.owned / a.s.n || (a.s.n - a.s.owned) - (b.s.n - b.s.owned),
+    owned: (a, b) => b.s.owned - a.s.owned || b.s.owned / b.s.n - a.s.owned / a.s.n,
+  };
 
   function renderSetList() {
     const q = $("setSearch").value.trim().toLowerCase();
-    const match = (set) => !q || set.name.toLowerCase().includes(q) || set.group.toLowerCase().includes(q);
+    const started = (set) => set.minis.some((m) => count(m));
+    const match = (set) => (!q || set.name.toLowerCase().includes(q) || set.group.toLowerCase().includes(q)) && (!ui.startedOnly || started(set));
     let html = scopeItem(ALL, "All sets", minis, "all", (s) => `${s.owned} of ${s.n} minis · ${sets.length} sets`);
+    if (ui.setSort !== "release") {
+      const rows = sets.filter((set) => set.minis.length && match(set)).map((set) => ({ set, s: stats(set.minis) }));
+      rows.sort((a, b) => SET_SORTS[ui.setSort](a, b) || a.set.name.localeCompare(b.set.name));
+      html += rows.map((r) => setItem(r.set, true)).join("") || `<p class="set-empty">${ui.startedOnly ? "You haven't added any minis yet." : "No sets match."}</p>`;
+      $("setList").innerHTML = html;
+      return;
+    }
+    let shownAny = false;
     for (const cat of categories) {
       const shown = cat.sets.filter(match);
       if (!shown.length) continue;
-      const open = q || ui.open[cat.id];
+      shownAny = true;
+      const open = q || ui.startedOnly || ui.open[cat.id];
       html += `<div class="cat${open ? " open" : ""}">
         <div class="cat-head">
           ${scopeItem(cat.id, cat.name, cat.sets.flatMap((x) => x.minis), "cat-item", (s) => `${s.owned} of ${s.n} minis · ${cat.sets.length} sets`)}
@@ -146,11 +164,12 @@
           const gs = g.sets.filter(match);
           if (!gs.length) continue;
           if (g.name) html += scopeItem(g.id, g.name, g.sets.flatMap((x) => x.minis), "grp-item", (s) => `${s.owned} of ${s.n} minis · ${g.sets.length} sets`);
-          html += `<div class="${g.name ? "grp-sets" : "cat-sets"}">${gs.map(setItem).join("")}</div>`;
+          html += `<div class="${g.name ? "grp-sets" : "cat-sets"}">${gs.map((set) => setItem(set)).join("")}</div>`;
         }
       }
       html += `</div>`;
     }
+    if (!shownAny) html += `<p class="set-empty">${ui.startedOnly && !q ? "You haven't added any minis yet." : "No sets match."}</p>`;
     $("setList").innerHTML = html;
     const active = $("setList").querySelector(".set-item.active");
     if (active && !q) active.scrollIntoView({ block: "nearest" });
@@ -420,6 +439,13 @@
     if (item) selectSet(item.dataset.set);
   });
   $("setSearch").addEventListener("input", renderSetList);
+  $("setSort").addEventListener("change", (e) => { ui.setSort = e.target.value; persistUi(); renderSetList(); $("setList").scrollTop = 0; });
+  $("startedOnly").addEventListener("click", () => {
+    ui.startedOnly = !ui.startedOnly;
+    $("startedOnly").setAttribute("aria-pressed", ui.startedOnly);
+    persistUi();
+    renderSetList();
+  });
 
   $("statusChips").addEventListener("click", (e) => {
     const chip = e.target.closest("[data-status]");
@@ -736,6 +762,8 @@
   // Make sure the selected set's category is expanded in the sidebar.
   const startSet = sets.find((s) => s.id === ui.set);
   if (startSet) ui.open["cat:" + startSet.category] = true;
+  $("setSort").value = SET_SORTS[ui.setSort] ? ui.setSort : (ui.setSort = "release");
+  $("startedOnly").setAttribute("aria-pressed", !!ui.startedOnly);
   $("scraped").textContent = DATA.scraped ? `(updated ${DATA.scraped})` : "";
   renderAll();
   initAccount();

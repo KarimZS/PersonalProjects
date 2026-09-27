@@ -52,10 +52,20 @@
   <div class="layout">
     <aside class="sidebar" id="sidebar" aria-label="Sets">
       <div class="sidebar-head">
-        <input type="search" id="setSearch" placeholder="Filter sets…" aria-label="Filter sets">
-        <button class="icon-btn only-mobile" id="closeSets" aria-label="Close set list">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
+        <div class="sidebar-row">
+          <input type="search" id="setSearch" placeholder="Filter sets…" aria-label="Filter sets">
+          <button class="icon-btn only-mobile" id="closeSets" aria-label="Close set list">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="sidebar-row">
+          <select id="setSort" aria-label="Sort sets">
+            <option value="release">Release order</option>
+            <option value="closest">Closest to done</option>
+            <option value="owned">Most owned</option>
+          </select>
+          <button class="chip" id="startedOnly" aria-pressed="false" title="Only show sets you own at least one mini from">Started only</button>
+        </div>
       </div>
       <nav id="setList"></nav>
     </aside>
