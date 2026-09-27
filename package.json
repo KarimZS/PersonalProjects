@@ -1,0 +1,11 @@
+{
+  "name": "personal-projects",
+  "private": true,
+  "description": "Repo root entry point so Railway can deploy the D&D mini tracker without a Root Directory setting",
+  "scripts": {
+    "start": "node dnd-mini-tracker/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
