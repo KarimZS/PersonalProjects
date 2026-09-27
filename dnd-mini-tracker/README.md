@@ -1,12 +1,15 @@
 # D&D Mini Tracker
 
-A mobile-friendly collection tracker for **D&D Icons of the Realms** core set miniatures.
-It covers 43 sets and 2,221 minis, scraped from
-[MinisGallery](https://www.minisgallery.com/index.php?id=icons-of-the-realms-core-sets).
+A mobile-friendly collection tracker for **D&D Icons of the Realms** miniatures.
+It covers every Icons of the Realms category on
+[MinisGallery](https://www.minisgallery.com/index.php?id=icons-of-the-realms): Core Sets,
+Premium Sets, Special Release Sets (Warbands, Adult Dragons, Classic Monsters and more), Premium Figures and Promos.
+That's 275 sets and 3,194 minis.
 
 ## Features
 
-- Browse by set, or all sets at once, with **% complete per set** and overall.
+- Browse by set, by sub-series (for example Warbands), by whole category, or everything at once,
+  with **% complete** at every level.
 - **Quick add/remove**: use the `−` / `+` buttons to track duplicates, or tap the number badge to toggle owned.
 - Filters for **Owned / Missing / Duplicates / Wishlist**, plus rarity, size, search and sort.
 - Mark a whole set owned or clear it, with undo.
@@ -23,14 +26,18 @@ No dependencies are needed (Node 18+). You can also open `public/index.html` dir
 
 ## Deploy to Railway
 
-This repo holds several projects, so each one is its own Railway service.
+This repo holds several projects, so each one is its own Railway service. There is no `railway.json`,
+because Railway has deprecated config-as-code. These settings live on the service instead:
 
-1. In your Railway project, add a service from this GitHub repo.
-2. In the service's **Settings → Source**, set **Root Directory** to `/dnd-mini-tracker`.
-   Railway then uses this folder's `package.json` and `railway.json`.
-3. Optional: set **Watch Paths** to `/dnd-mini-tracker/**`, so changes to other projects don't redeploy this one.
-4. Railway detects Node, runs `npm start` and provides `PORT`. The health check is `/health`.
-5. Under **Settings → Networking**, generate a domain.
+| Setting | Value |
+| --- | --- |
+| Source | this repo, branch `main` |
+| Root Directory | `/dnd-mini-tracker` |
+| Watch Paths | `/dnd-mini-tracker/**` (changes to other projects don't redeploy this one) |
+| Healthcheck Path | `/health` |
+| Restart Policy | On failure |
+
+Railpack detects Node from `package.json` and runs `npm start`. The server listens on Railway's `PORT`.
 
 ## Refreshing the mini list
 
@@ -38,7 +45,7 @@ This repo holds several projects, so each one is its own Railway service.
 npm run scrape       # python3 scripts/scrape.py
 ```
 
-This re-fetches every set from MinisGallery and rewrites `public/data/minis.json` and `public/data/minis.js`.
+This crawls every Icons of the Realms category on MinisGallery and rewrites `public/data/minis.json` and `public/data/minis.js`.
 Saved collections are keyed by set and mini number and name, so they keep working after a refresh.
 
 Images are loaded directly from MinisGallery. D&D and Icons of the Realms are trademarks of Wizards of the Coast.

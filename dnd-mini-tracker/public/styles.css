@@ -105,6 +105,24 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .set-item.complete .pct { color: var(--good); font-weight: 600; }
 .set-item.all .name { color: var(--accent); }
 
+.cat { border-bottom: 1px solid var(--line); }
+.cat-head { position: relative; }
+.cat-head .set-item { padding-right: 52px; }
+.cat-item .name { font-size: 15px; letter-spacing: .2px; }
+.cat-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border: 0; border-radius: 10px; background: none; color: var(--muted);
+}
+.cat-toggle:hover { background: var(--line); color: var(--text); }
+.cat-toggle svg { transition: transform .15s; }
+.cat.open .cat-toggle svg { transform: rotate(180deg); }
+.cat-head .pct { margin-right: 4px; }
+.grp-item { padding-left: 24px; background: rgba(0,0,0,.12); }
+.grp-item .name { font-size: 13px; color: var(--accent); }
+.cat-sets .set-item { padding-left: 24px; }
+.grp-sets .set-item { padding-left: 36px; }
+
 .bar { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
 .bar > span { display: block; height: 100%; background: var(--accent); border-radius: inherit; transition: width .25s; }
 .complete .bar > span, .bar.done > span { background: var(--good); }

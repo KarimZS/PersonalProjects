@@ -28,6 +28,26 @@
   }
   const byKey = new Map(minis.map((m) => [m.key, m]));
 
+  // Sidebar tree: category -> group ("" for sets directly in the category) -> sets.
+  const categories = [];
+  for (const set of sets) {
+    set.category = set.category || "Core Sets";
+    set.group = (set.group || "").replace(/^Icons of the Realms\s*/i, "");
+    let cat = categories.find((c) => c.name === set.category);
+    if (!cat) categories.push((cat = { name: set.category, id: "cat:" + set.category, groups: [] }));
+    let grp = cat.groups.find((g) => g.name === set.group);
+    if (!grp) cat.groups.push((grp = { name: set.group, id: "grp:" + set.category + "|" + set.group, sets: [] }));
+    grp.sets.push(set);
+  }
+  // Scopes other than a single set: everything, a category, or a group within a category.
+  const scopes = new Map([[ALL, { name: "All sets", sets }]]);
+  for (const cat of categories) {
+    cat.sets = cat.groups.flatMap((g) => g.sets);
+    scopes.set(cat.id, cat);
+    for (const g of cat.groups) if (g.name) scopes.set(g.id, { name: g.name, sets: g.sets, category: cat.name });
+  }
+  const validScope = (id) => scopes.has(id) || sets.some((s) => s.id === id);
+
   function rarityClass(r) {
     if (/very rare|ultra rare|super rare/i.test(r)) return "r-veryrare";
     if (/uncommon/i.test(r)) return "r-uncommon";
@@ -54,8 +74,9 @@
   col.wish = col.wish || {};
   const persist = () => save(STORE_KEY, { owned: col.owned, wish: col.wish, updated: new Date().toISOString() });
 
-  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "" }, load(UI_KEY, {}));
-  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort });
+  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null }, load(UI_KEY, {}));
+  ui.open = ui.open || { [categories[0].id]: true };
+  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort, open: ui.open });
   ui.q = ""; ui.rarity = ""; ui.size = "";
 
   const count = (m) => col.owned[m.key] || 0;
@@ -77,7 +98,8 @@
 
   // ---------- rendering ----------
   function currentSet() { return sets.find((s) => s.id === ui.set) || null; }
-  function scope() { const s = currentSet(); return s ? s.minis : minis; }
+  function scopeSets() { const s = currentSet(); return s ? [s] : scopes.get(ui.set).sets; }
+  function scope() { const s = currentSet(); return s ? s.minis : ui.set === ALL ? minis : scopeSets().flatMap((x) => x.minis); }
 
   function renderOverall() {
     const s = stats(minis);
@@ -86,34 +108,57 @@
       `<span><strong>${s.owned}</strong> / ${s.n}</span>`;
   }
 
+  function scopeItem(id, name, list, extraClass, meta) {
+    const s = stats(list);
+    const done = s.n && s.owned === s.n;
+    return `<button class="set-item ${extraClass}${ui.set === id ? " active" : ""}${done ? " complete" : ""}" data-set="${esc(id)}">
+      <div class="row"><span class="name">${esc(name)}</span><span class="pct">${s.n ? pctLabel(s) : "—"}</span></div>
+      <div class="meta">${meta(s)}</div>
+      <div class="bar"><span style="width:${s.pct}%"></span></div></button>`;
+  }
+  const setItem = (set) => scopeItem(set.id, set.name, set.minis, "", (s) =>
+    `${esc(set.release)}${set.release ? " · " : ""}${s.n ? `${s.owned} / ${s.n}` : "not yet listed"}`);
+
   function renderSetList() {
     const q = $("setSearch").value.trim().toLowerCase();
-    const all = stats(minis);
-    let html = `<button class="set-item all${ui.set === ALL ? " active" : ""}" data-set="${ALL}">
-      <div class="row"><span class="name">All sets</span><span class="pct">${pctLabel(all)}</span></div>
-      <div class="meta">${all.owned} of ${all.n} minis · ${sets.length} sets</div>
-      <div class="bar"><span style="width:${all.pct}%"></span></div></button>`;
-    for (const set of sets) {
-      if (q && !set.name.toLowerCase().includes(q)) continue;
-      const s = stats(set.minis);
-      const done = s.n && s.owned === s.n;
-      html += `<button class="set-item${ui.set === set.id ? " active" : ""}${done ? " complete" : ""}" data-set="${esc(set.id)}">
-        <div class="row"><span class="name">${esc(set.name)}</span><span class="pct">${s.n ? pctLabel(s) : "—"}</span></div>
-        <div class="meta">${esc(set.release)} · ${s.n ? `${s.owned} / ${s.n}` : "not yet listed"}</div>
-        <div class="bar"><span style="width:${s.pct}%"></span></div></button>`;
+    const match = (set) => !q || set.name.toLowerCase().includes(q) || set.group.toLowerCase().includes(q);
+    let html = scopeItem(ALL, "All sets", minis, "all", (s) => `${s.owned} of ${s.n} minis · ${sets.length} sets`);
+    for (const cat of categories) {
+      const shown = cat.sets.filter(match);
+      if (!shown.length) continue;
+      const open = q || ui.open[cat.id];
+      html += `<div class="cat${open ? " open" : ""}">
+        <div class="cat-head">
+          ${scopeItem(cat.id, cat.name, cat.sets.flatMap((x) => x.minis), "cat-item", (s) => `${s.owned} of ${s.n} minis · ${cat.sets.length} sets`)}
+          <button class="cat-toggle" data-toggle="${esc(cat.id)}" aria-expanded="${!!open}" aria-label="${open ? "Collapse" : "Expand"} ${esc(cat.name)}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>`;
+      if (open) {
+        for (const g of cat.groups) {
+          const gs = g.sets.filter(match);
+          if (!gs.length) continue;
+          if (g.name) html += scopeItem(g.id, g.name, g.sets.flatMap((x) => x.minis), "grp-item", (s) => `${s.owned} of ${s.n} minis · ${g.sets.length} sets`);
+          html += `<div class="${g.name ? "grp-sets" : "cat-sets"}">${gs.map(setItem).join("")}</div>`;
+        }
+      }
+      html += `</div>`;
     }
     $("setList").innerHTML = html;
+    const active = $("setList").querySelector(".set-item.active");
+    if (active && !q) active.scrollIntoView({ block: "nearest" });
   }
 
   function renderSetHeader() {
     const set = currentSet();
     const s = stats(scope());
     const done = s.n && s.owned === s.n;
-    const title = set ? esc(set.name) : "All sets";
+    const sc = scopes.get(ui.set);
+    const title = esc(set ? set.name : sc.name);
     const meta = set
-      ? [set.release, ...set.info.slice(0, -1)].filter(Boolean).map(esc).join(" · ") +
+      ? [set.category + (set.group ? " › " + set.group : ""), set.release, ...set.info.slice(0, -1)].filter(Boolean).map(esc).join(" · ") +
         ` · <a href="${esc(set.url)}" target="_blank" rel="noopener">MinisGallery ↗</a>`
-      : `${sets.length} core sets`;
+      : (sc.category ? esc(sc.category) + " · " : "") + `${sc.sets.length} sets`;
     $("setHeader").innerHTML = `
       <div><h2>${title}</h2><div class="meta">${meta}</div></div>
       <div class="set-stats">
@@ -125,7 +170,7 @@
       ${set && s.n ? `<div class="set-actions">
         <button class="btn" data-action="own-all">Mark all owned</button>
         <button class="btn" data-action="clear-set">Clear set</button></div>` : ""}`;
-    document.title = (set ? set.name + " · " : "") + "D&D Mini Tracker";
+    document.title = (ui.set !== ALL ? (set ? set.name : sc.name) + " · " : "") + "D&D Mini Tracker";
   }
 
   function filtered() {
@@ -149,11 +194,11 @@
     }[ui.sort];
     // Keep sets grouped in the all-sets view; sort within each set.
     const setIdx = new Map(sets.map((s, i) => [s.id, i]));
-    list.sort((a, b) => (ui.set === ALL ? setIdx.get(a.set.id) - setIdx.get(b.set.id) : 0) || cmp(a, b));
+    list.sort((a, b) => (!currentSet() ? setIdx.get(a.set.id) - setIdx.get(b.set.id) : 0) || cmp(a, b));
     return list;
   }
 
-  function cardHtml(m) {
+  function cardHtml(m, showSet) {
     const c = count(m);
     const wish = !!col.wish[m.key];
     return `<article class="card${c ? " owned" : ""}" data-key="${esc(m.key)}">
@@ -170,6 +215,7 @@
         <div class="tags">
           <span class="tag rarity ${rarityClass(m.rarity)}">${esc(m.rarity || "Unknown")}</span>
           ${m.size ? `<span class="tag">${esc(m.size)}</span>` : ""}
+          ${showSet ? `<span class="tag set" title="${esc(m.set.name)}">${esc(m.set.name)}</span>` : ""}
         </div>
         <div class="counter">
           <button data-action="dec" aria-label="Remove one" ${c ? "" : "disabled"}>−</button>
@@ -184,13 +230,16 @@
     const list = filtered();
     let html = "";
     let lastSet = null;
+    // Headings per set, unless the sets here are mostly tiny (promos, boxed singles): then tag each card instead.
+    const multi = !currentSet();
+    const headings = multi && list.length / (new Set(list.map((m) => m.set)).size || 1) >= 6;
     for (const m of list) {
-      if (ui.set === ALL && m.set !== lastSet) {
+      if (headings && m.set !== lastSet) {
         lastSet = m.set;
         const s = stats(m.set.minis);
         html += `<h3 class="group-title"><span>${esc(m.set.name)}</span><span>${s.owned} / ${s.n} · ${pctLabel(s)}</span></h3>`;
       }
-      html += cardHtml(m);
+      html += cardHtml(m, multi && !headings);
     }
     $("grid").innerHTML = html;
     $("empty").hidden = list.length > 0 || scope().length === 0;
@@ -237,7 +286,7 @@
     renderOverall();
     renderSetList();
     renderSetHeader();
-    if (ui.set === ALL) {
+    if (!currentSet()) {
       const s = stats(m.set.minis);
       const title = [...$("grid").querySelectorAll(".group-title")].find((h) => h.firstChild.textContent === m.set.name);
       if (title) title.lastChild.textContent = `${s.owned} / ${s.n} · ${pctLabel(s)}`;
@@ -325,12 +374,23 @@
   function selectSet(id) {
     ui.set = id;
     persistUi();
-    if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+    const hash = "#" + encodeURIComponent(id);
+    if (location.hash !== hash) history.replaceState(null, "", hash);
+    const set = sets.find((x) => x.id === id);
+    if (set) ui.open["cat:" + set.category] = true;
     closeSidebar();
     renderAll();
     window.scrollTo({ top: 0 });
   }
   $("setList").addEventListener("click", (e) => {
+    const toggle = e.target.closest("[data-toggle]");
+    if (toggle) {
+      const id = toggle.dataset.toggle;
+      if (ui.open[id]) delete ui.open[id]; else ui.open[id] = true;
+      persistUi();
+      renderSetList();
+      return;
+    }
     const item = e.target.closest("[data-set]");
     if (item) selectSet(item.dataset.set);
   });
@@ -415,7 +475,7 @@
 
   window.addEventListener("hashchange", () => {
     const id = decodeURIComponent(location.hash.slice(1));
-    if (id && id !== ui.set && (id === ALL || sets.some((s) => s.id === id))) selectSet(id);
+    if (id && id !== ui.set && validScope(id)) selectSet(id);
   });
   // Keep tabs in sync when the collection changes in another tab.
   window.addEventListener("storage", (e) => {
@@ -427,8 +487,11 @@
 
   // ---------- init ----------
   const hashSet = decodeURIComponent(location.hash.slice(1));
-  if (hashSet && (hashSet === ALL || sets.some((s) => s.id === hashSet))) ui.set = hashSet;
-  if (ui.set !== ALL && !sets.some((s) => s.id === ui.set)) ui.set = ALL;
+  if (hashSet && validScope(hashSet)) ui.set = hashSet;
+  if (!validScope(ui.set)) ui.set = ALL;
+  // Make sure the selected set's category is expanded in the sidebar.
+  const startSet = sets.find((s) => s.id === ui.set);
+  if (startSet) ui.open["cat:" + startSet.category] = true;
   $("scraped").textContent = DATA.scraped ? `(updated ${DATA.scraped})` : "";
   renderAll();
 })();
