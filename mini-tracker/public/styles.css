@@ -30,7 +30,7 @@ body {
 }
 a { color: var(--accent); }
 button, input, select { font: inherit; color: inherit; }
-button { cursor: pointer; }
+button { cursor: pointer; touch-action: manipulation; } /* no double-tap-zoom delay on phones */
 [hidden] { display: none !important; }
 
 svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -154,7 +154,17 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
   padding: 10px 0; margin-bottom: 4px; background: var(--bg);
 }
-.filters #search { flex: 1 1 220px; }
+.filters .main-search { flex: 1 1 220px; }
+.search-wrap { position: relative; display: flex; flex: 1; min-width: 0; }
+.search-wrap input { flex: 1; width: 100%; padding-right: 40px; }
+.search-wrap input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.clear-search {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border: 0; border-radius: 8px; background: none; color: var(--muted);
+}
+.clear-search:hover { background: var(--line); color: var(--text); }
+.clear-search svg { width: 18px; height: 18px; }
 .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; height: 34px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); font-size: 13px; }
@@ -316,7 +326,10 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
   .set-header h2 { font-size: 20px; }
   /* Too tall to pin on a phone; scrolls away with the page instead. */
   .filters { gap: 8px; position: static; }
-  .filters #search { flex-basis: 100%; }
+  .filters .main-search { flex-basis: 100%; }
+  /* Pin the login dialog near the top so the on-screen keyboard opening/closing doesn't move it
+     (a moving dialog made taps on its buttons miss). */
+  .auth { margin: calc(12px + env(safe-area-inset-top)) auto auto; max-height: calc(100dvh - 24px); overflow-y: auto; }
   .chips { width: 100%; }
   .selects { width: 100%; }
   .selects select { flex: 1; padding: 0 8px; font-size: 13px; }

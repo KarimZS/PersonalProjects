@@ -53,7 +53,10 @@
     <aside class="sidebar" id="sidebar" aria-label="Sets">
       <div class="sidebar-head">
         <div class="sidebar-row">
-          <input type="search" id="setSearch" placeholder="Filter sets…" aria-label="Filter sets">
+          <div class="search-wrap">
+            <input type="search" id="setSearch" placeholder="Filter sets…" aria-label="Filter sets">
+            <button type="button" class="clear-search" data-clear="setSearch" aria-label="Clear set filter" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
           <button class="icon-btn only-mobile" id="closeSets" aria-label="Close set list">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
@@ -75,7 +78,10 @@
       <section class="set-header" id="setHeader"></section>
 
       <section class="filters" aria-label="Filters">
-        <input type="search" id="search" placeholder="Search minis, e.g. zombie 1" aria-label="Search minis">
+        <div class="search-wrap main-search">
+          <input type="search" id="search" placeholder="Search minis, e.g. zombie 1" aria-label="Search minis">
+          <button type="button" class="clear-search" data-clear="search" aria-label="Clear search" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
         <div class="chips" id="statusChips" role="group" aria-label="Show">
           <button data-status="all" class="chip active">All</button>
           <button data-status="owned" class="chip">Owned</button>
@@ -131,10 +137,10 @@
       <h2 id="authTitle"></h2>
       <p class="auth-sub" id="authSub"></p>
       <label id="emailField">Email
-        <input type="email" name="email" id="authEmail" autocomplete="email" required>
+        <input type="email" name="email" id="authEmail" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" required>
       </label>
       <label>Password
-        <input type="password" name="password" id="authPassword" required minlength="8">
+        <input type="password" name="password" id="authPassword" enterkeyhint="go" required minlength="8">
       </label>
       <p class="auth-error" id="authError" role="alert" hidden></p>
       <button type="submit" class="btn primary block" id="authSubmit"></button>

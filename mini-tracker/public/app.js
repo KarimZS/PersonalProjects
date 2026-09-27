@@ -426,7 +426,19 @@
     renderAll();
   });
 
+  let searchTimer;
+  function clearSearch() {
+    clearTimeout(searchTimer);
+    $("search").value = "";
+    ui.q = "";
+    syncClearButtons();
+  }
+  function syncClearButtons() {
+    document.querySelectorAll("[data-clear]").forEach((b) => { b.hidden = !$(b.dataset.clear).value; });
+  }
+
   function selectSet(id) {
+    if (id !== ui.set) clearSearch(); // a new set starts with a fresh search
     ui.set = id;
     persistUi();
     const hash = "#" + encodeURIComponent(id);
@@ -469,7 +481,15 @@
     persistUi();
     renderAll();
   });
-  let searchTimer;
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-clear]");
+    if (!b) return;
+    const input = $(b.dataset.clear);
+    input.value = "";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.focus();
+  });
+  document.addEventListener("input", (e) => { if (e.target.type === "search") syncClearButtons(); });
   $("search").addEventListener("input", (e) => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => { ui.q = e.target.value; renderGrid(); }, 120);
