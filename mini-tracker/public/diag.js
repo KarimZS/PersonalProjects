@@ -29,6 +29,23 @@
     return d + (r ? " [" + Math.round(r.left) + "," + Math.round(r.top) + " " + Math.round(r.width) + "x" + Math.round(r.height) + "]" : "");
   }
   function rect(id) { var el = document.getElementById(id); return el ? describe(el) + (el.hidden ? " hidden" : "") : "missing"; }
+  // Elements sticking out past the right edge of the screen (causes of sideways scrolling), ignoring ones inside
+  // their own scrolling/clipping box (e.g. the filter chips row) and the off-screen set drawer.
+  function tooWide() {
+    var out = [];
+    var all = document.body.getElementsByTagName("*");
+    for (var i = 0; i < all.length && out.length < 8; i++) {
+      var el = all[i], r = el.getBoundingClientRect();
+      if (!r.width || r.right <= innerWidth + 1 || el.closest("#sidebar")) continue;
+      var clipped = false;
+      for (var a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+        var ox = getComputedStyle(a).overflowX;
+        if (ox !== "visible") { clipped = true; break; }
+      }
+      if (!clipped) out.push(describe(el));
+    }
+    return out;
+  }
   function env(when) {
     var vv = window.visualViewport;
     var header = document.querySelector(".topbar");
@@ -40,6 +57,8 @@
       header: header ? describe(header) : null,
       buttons: [rect("openSets"), rect("loginBtn"), rect("openMenu"), rect("openMenuUser")],
       appReady: !!window.__appReady,
+      scrollWidth: document.documentElement.scrollWidth,
+      tooWide: tooWide(),
       openDialogs: Array.prototype.map.call(document.querySelectorAll("dialog[open]"), function (d) { return d.id; }),
     });
   }

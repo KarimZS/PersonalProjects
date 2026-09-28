@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16131a">
+  <title>Log in · Mini Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-page">
+  <header class="topbar">
+    <a class="brand" href="/">
+      <svg class="d20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 2l-5 13h10zM3 7l4 8M21 7l-4 8M7 15l5 7 5-7"/></svg>
+      <div>
+        <h1>Mini Tracker</h1>
+        <p class="sub">Miniatures collection tracker</p>
+      </div>
+    </a>
+  </header>
+
+  <main class="auth-main">
+    <a class="back-link" id="backLink" href="/">← Back to Mini Tracker</a>
+    <form class="auth-card" id="authForm" novalidate>
+      <nav class="auth-tabs" id="authTabs">
+        <a id="tabLogin" href="/login">Log in</a>
+        <a id="tabSignup" href="/signup">Create account</a>
+      </nav>
+      <h2 id="authTitle"></h2>
+      <p class="auth-sub" id="authSub"></p>
+      <label id="emailField">Email
+        <input type="email" name="email" id="authEmail" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" required>
+      </label>
+      <label>Password
+        <input type="password" name="password" id="authPassword" enterkeyhint="go" required minlength="8">
+      </label>
+      <p class="auth-error" id="authError" role="alert" hidden></p>
+      <button type="submit" class="btn primary block" id="authSubmit">Log in</button>
+    </form>
+  </main>
+
+  <script src="diag.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

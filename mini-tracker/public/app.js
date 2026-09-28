@@ -372,7 +372,8 @@
           <button data-action="inc" aria-label="Add one">+</button>
         </div>
       </div>`;
-    $("detail").showModal();
+    $("detail").hidden = false;
+    document.body.classList.add("noscroll");
   }
   $("detailBody").addEventListener("click", (e) => {
     const btn = e.target.closest("[data-action]");
@@ -384,7 +385,13 @@
     $("detailBody").querySelector("[data-action=dec]").disabled = !c;
     refreshAfterChange(m);
   });
-  $("detail").addEventListener("click", (e) => { if (e.target === $("detail")) $("detail").close(); });
+  // Plain overlay rather than <dialog>: iPhone Safari showed <dialog> pop-ups invisibly while they captured taps.
+  function closeDetail() {
+    $("detail").hidden = true;
+    document.body.classList.remove("noscroll");
+  }
+  $("detailClose").addEventListener("click", closeDetail);
+  $("detail").addEventListener("click", (e) => { if (e.target === $("detail")) closeDetail(); });
 
   // ---------- toast with undo ----------
   let toastTimer;
@@ -521,7 +528,7 @@
   // Menu: export / import / reset
   $("openMenu").addEventListener("click", (e) => { e.stopPropagation(); $("menu").hidden = !$("menu").hidden; });
   document.addEventListener("click", (e) => { if (!$("menu").contains(e.target)) $("menu").hidden = true; });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { $("menu").hidden = true; closeSidebar(); } });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { $("menu").hidden = true; closeSidebar(); closeDetail(); } });
 
   $("exportBtn").addEventListener("click", () => {
     const payload = { app: "mini-tracker", version: 1, exported: new Date().toISOString(), owned: col.owned, wish: col.wish };
@@ -712,69 +719,19 @@
   }
   $("dismissBanner").addEventListener("click", () => { save(UI_KEY + ":banner", true); updateBanner(); });
 
-  // ---------- auth dialog ----------
-  let authMode = "login";
-  const AUTH_TEXT = {
-    login: { title: "Welcome back", sub: "Log in to see your collection.", submit: "Log in", pw: "current-password" },
-    signup: { title: "Create your free account", sub: "Save your collection and use it on any device.", submit: "Create account", pw: "new-password" },
-    delete: { title: "Delete your account", sub: "This permanently deletes your account and collection. Enter your password to confirm.", submit: "Delete account forever", pw: "current-password" },
-  };
-
-  function openAuth(mode) {
-    authMode = mode;
-    const t = AUTH_TEXT[mode];
-    $("authTitle").textContent = t.title;
-    $("authSub").textContent = t.sub;
-    $("authSubmit").textContent = t.submit;
-    $("authSubmit").classList.toggle("danger", mode === "delete");
-    $("authPassword").autocomplete = t.pw;
-    $("authPassword").value = "";
-    $("authTabs").hidden = mode === "delete";
-    $("emailField").hidden = mode === "delete";
-    document.querySelectorAll("#authTabs [data-mode]").forEach((b) => b.setAttribute("aria-selected", b.dataset.mode === mode));
-    $("authError").hidden = true;
-    $("menu").hidden = true;
-    if (!$("authDialog").open) $("authDialog").showModal();
-    (mode === "delete" || $("authEmail").value ? $("authPassword") : $("authEmail")).focus();
+  // ---------- auth pages ----------
+  // Log in, sign up and account deletion are their own pages (/login, /signup, /delete-account); they send the
+  // user back here (same set) afterwards, and the guest collection is merged on return by signedIn().
+  function goToAuth(mode) {
+    const path = { login: "/login", signup: "/signup", delete: "/delete-account" }[mode];
+    location.href = path + (location.hash ? "?next=" + encodeURIComponent(location.hash) : "");
   }
-
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-auth]");
-    if (b) openAuth(b.dataset.auth);
+    if (b) goToAuth(b.dataset.auth);
   });
-  $("authTabs").addEventListener("click", (e) => { const b = e.target.closest("[data-mode]"); if (b) openAuth(b.dataset.mode); });
-  $("authClose").addEventListener("click", () => $("authDialog").close());
-  // Tapping the dimmed area outside the box closes it (clicks inside land on the form, not the dialog itself).
-  $("authDialog").addEventListener("click", (e) => { if (e.target === $("authDialog")) $("authDialog").close(); });
-  $("loginBtn").addEventListener("click", () => openAuth("login"));
-  $("deleteAccountBtn").addEventListener("click", () => openAuth("delete"));
-
-  $("authForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = $("authEmail").value.trim();
-    const password = $("authPassword").value;
-    const showError = (msg) => { $("authError").textContent = msg; $("authError").hidden = false; };
-    if (authMode !== "delete" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError("Enter a valid email address.");
-    if (authMode === "signup" && password.length < 8) return showError("Password must be at least 8 characters.");
-    if (!password) return showError("Enter your password.");
-    $("authSubmit").disabled = true;
-    try {
-      if (authMode === "delete") {
-        await api("DELETE", "/account", { password });
-        $("authDialog").close();
-        signedOut("Your account has been deleted.");
-      } else {
-        const { user: u } = await api("POST", "/" + authMode, { email, password });
-        $("authDialog").close();
-        await signedIn(u);
-        if (authMode === "signup") toast("Account created — your collection now saves automatically");
-      }
-    } catch (err) {
-      showError(err.message);
-    } finally {
-      $("authSubmit").disabled = false;
-    }
-  });
+  $("loginBtn").addEventListener("click", () => goToAuth("login"));
+  $("deleteAccountBtn").addEventListener("click", () => goToAuth("delete"));
 
   $("logoutBtn").addEventListener("click", async () => {
     $("menu").hidden = true;
@@ -785,11 +742,17 @@
   $("openMenuUser").addEventListener("click", (e) => { e.stopPropagation(); $("menu").hidden = !$("menu").hidden; });
 
   async function initAccount() {
+    let flash = null;
+    try { flash = sessionStorage.getItem("mini-tracker:flash"); sessionStorage.removeItem("mini-tracker:flash"); } catch { /* ignore */ }
     try {
       const { user: u } = await api("GET", "/me");
       accountsAvailable = true;
       if (u) await signedIn(u);
       else renderAccount();
+      if (flash) {
+        const shown = !$("toast").hidden && $("toast").querySelector("span"); // e.g. "Added 3 minis…" from signedIn
+        toast(shown ? `${flash}. ${shown.textContent}` : flash);
+      }
     } catch {
       // Accounts unavailable (no server/database, or opened from disk): guest mode only.
       $("loginBtn").hidden = true;

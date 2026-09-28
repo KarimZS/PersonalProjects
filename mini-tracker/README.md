@@ -27,6 +27,10 @@ plus [Critical Role](https://www.minisgallery.com/index.php?id=critical-role-min
   `HttpOnly; SameSite=Lax` cookie (with `Secure` over HTTPS). Sessions last 30 days and renew as they're used.
   Auth endpoints are rate-limited per IP.
 - `src/db.js` and `migrations/*.sql`: the schema (`users`, `sessions`, `collection_items`), applied in order, each once.
+- `public/auth.html` + `public/auth.js`: the log in, sign up and delete-account pages (`/login`, `/signup`,
+  `/delete-account`). They return you to the set you came from, where any guest collection is merged into the account.
+- `public/diag.js`: reports browser JS errors to the server log (`[client] …` lines in Railway); add `?debug` to the URL
+  to also log screen/layout details and which element each tap hit.
 - `public/app.js`: the front end. When logged in, it syncs changes in batches: it sends the minis that differ from
   what the server has, retries if offline, and makes a final save when the tab closes.
 

@@ -118,34 +118,15 @@
     </main>
   </div>
 
-  <dialog id="detail" class="detail">
-    <form method="dialog"><button class="icon-btn close" aria-label="Close">
+  <div id="detail" class="detail-overlay" role="dialog" aria-modal="true" aria-label="Mini details" hidden>
+    <div class="detail">
+      <button class="icon-btn close" id="detailClose" aria-label="Close">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button></form>
-    <div id="detailBody"></div>
-  </dialog>
+    </button>
+      <div id="detailBody"></div>
+    </div>
+  </div>
 
-  <dialog id="authDialog" class="auth">
-    <form id="authForm" novalidate>
-      <button type="button" class="icon-btn close" id="authClose" aria-label="Close">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-      <div class="auth-tabs" id="authTabs" role="tablist">
-        <button type="button" role="tab" data-mode="login">Log in</button>
-        <button type="button" role="tab" data-mode="signup">Create account</button>
-      </div>
-      <h2 id="authTitle"></h2>
-      <p class="auth-sub" id="authSub"></p>
-      <label id="emailField">Email
-        <input type="email" name="email" id="authEmail" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" required>
-      </label>
-      <label>Password
-        <input type="password" name="password" id="authPassword" enterkeyhint="go" required minlength="8">
-      </label>
-      <p class="auth-error" id="authError" role="alert" hidden></p>
-      <button type="submit" class="btn primary block" id="authSubmit"></button>
-    </form>
-  </dialog>
 
   <div class="toast" id="toast" role="status" hidden></div>
 
