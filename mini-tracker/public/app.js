@@ -744,6 +744,8 @@
   });
   $("authTabs").addEventListener("click", (e) => { const b = e.target.closest("[data-mode]"); if (b) openAuth(b.dataset.mode); });
   $("authClose").addEventListener("click", () => $("authDialog").close());
+  // Tapping the dimmed area outside the box closes it (clicks inside land on the form, not the dialog itself).
+  $("authDialog").addEventListener("click", (e) => { if (e.target === $("authDialog")) $("authDialog").close(); });
   $("loginBtn").addEventListener("click", () => openAuth("login"));
   $("deleteAccountBtn").addEventListener("click", () => openAuth("delete"));
 
