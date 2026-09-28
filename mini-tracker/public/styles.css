@@ -45,8 +45,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   display: flex; align-items: center; gap: 12px;
   height: var(--header-h);
   padding: var(--safe-top) 16px 0;
-  background: rgba(22, 19, 26, .92);
-  backdrop-filter: blur(8px);
+  background: var(--bg); /* solid, no backdrop-filter: suspected cause of taps not reaching this sticky bar on iPhone Safari */
   border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
