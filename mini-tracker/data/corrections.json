@@ -1,0 +1,9 @@
+{
+  "_readme": [
+    "Our fixes for MinisGallery mistakes. Applied by scripts/scrape.py on every scrape; to apply without re-scraping run: python3 scripts/scrape.py --apply-corrections",
+    "overrides: '<set id>/<mini id>' (the mini's permanent key, see data/published-keys.txt) -> fields to show instead of MinisGallery's: number, name, rarity, size, plus a 'note' saying where the right value comes from. The key never changes, so saved collections are unaffected.",
+    "aliases: '<new scraped key>' -> '<published key>'. Use when MinisGallery itself fixes a number/name: that changes the scraped key, and the scraper refuses to drop the old one. The alias keeps the old key so collections stay attached."
+  ],
+  "overrides": {},
+  "aliases": {}
+}

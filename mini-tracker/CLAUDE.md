@@ -11,8 +11,11 @@ pushing; `main` auto-deploys to production.
   - `data/published-keys.txt` lists every key ever shipped. It is append-only: never edit or delete lines.
   - The scraper refuses to write data that drops a published key, and `server.js` refuses to start
     (so Railway keeps the previous deploy). Don't bypass either check.
-  - If a mini really has to be renamed or merged, add an alias from the old key to the new one and migrate the data
-    (DB rows and guest storage). Never just drop the old key.
+  - **MinisGallery mistakes** are fixed in `data/corrections.json` → `overrides` (display fields only: number, name,
+    rarity, size, plus a `note` with the source). Keys never change for a correction. Apply without re-scraping:
+    `python3 scripts/scrape.py --apply-corrections`.
+  - **When MinisGallery renumbers/renames a mini**, its scraped key changes and the scraper refuses to run. Add an
+    `aliases` entry (new scraped key → existing published key) so the mini keeps its key. Never drop the old key.
 - **Migrations are additive only.** Add new files in `migrations/` (`002_…sql`, …). Never edit an applied migration,
   and never `DROP`/`RENAME` a table or column or `TRUNCATE`. Shape changes go through add-new-column → backfill →
   switch reads → (leave the old one). Each migration runs in a transaction.

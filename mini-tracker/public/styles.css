@@ -253,6 +253,7 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .detail img { width: 100%; max-height: 60vh; object-fit: contain; background: #fff; display: block; }
 .detail .info { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .detail h3 { margin: 0; font-size: 20px; }
+.corrected-note { margin: 0; font-size: 13px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 8px; }
 
 .toast {
   position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%);

@@ -74,4 +74,24 @@ npm run scrape       # python3 scripts/scrape.py
 This crawls every category listed in `CATEGORIES` in `scripts/scrape.py` on MinisGallery and rewrites `public/data/minis.json` and `public/data/minis.js`.
 Saved collections are keyed by set and mini number and name, so they keep working after a refresh.
 
+### Fixing MinisGallery mistakes
+
+Add the fix to `data/corrections.json` under `overrides`, keyed by the mini's key (`<set id>/<mini id>`, as listed in
+`data/published-keys.txt`), then apply it without re-scraping:
+
+```json
+"overrides": {
+  "icons-of-the-realms-ghost-light/12-zombie": { "number": "14", "note": "Number printed on the base." }
+}
+```
+
+```sh
+python3 scripts/scrape.py --apply-corrections
+```
+
+Fixable fields are `number`, `name`, `rarity` and `size`. The key itself never changes, so saved collections are
+unaffected, and the app shows the correction and what MinisGallery lists. Corrections are re-applied on every scrape.
+If MinisGallery later fixes a mini itself, its key changes and the scraper stops. Add an `aliases` entry from the new key
+to the old one, and the mini keeps its key.
+
 Images are loaded directly from MinisGallery. D&D and Icons of the Realms are trademarks of Wizards of the Coast.

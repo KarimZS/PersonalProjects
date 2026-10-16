@@ -366,6 +366,8 @@
           <span class="tag">#${esc(m.number || "—")}</span>
           <span class="tag set">${esc(m.set.name)}</span>
         </div>
+        ${m.corrected ? `<p class="corrected-note">Corrected by Mini Tracker: MinisGallery lists ${Object.entries(m.corrected)
+          .map(([field, value]) => `${field} as “${esc(value || "—")}”`).join(", ")}.${m.correctionNote ? ` ${esc(m.correctionNote)}` : ""}</p>` : ""}
         <div class="counter" data-key="${esc(m.key)}">
           <button data-action="dec" aria-label="Remove one" ${c ? "" : "disabled"}>−</button>
           <output>${c} owned</output>
