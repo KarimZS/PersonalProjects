@@ -4877,13 +4877,14 @@
      "name": "Vecna 1e",
      "rarity": "Rare",
      "size": "Medium",
-     "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-044_Vecna_HDRender_WebRes.png",
+     "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-043_Vecna_HDRender_WebRes.png",
      "page": "https://www.minisgallery.com/index.php?id=8716&task=image&imageName=vecna-1e",
      "id": "40-vecna-1e",
      "corrected": {
-      "number": "40"
+      "number": "40",
+      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-044_Vecna_HDRender_WebRes.png"
      },
-     "correctionNote": "Vecna 1e is #42. WizKids numbering per retailer listings (e.g. Miniature Market 'DD50-42 Vecna (1E)', 'Set #40 Acererak (1E)'; RPG Mini Hunter 'Acererak 5e #41'); reported by a user from the figure."
+     "correctionNote": "Vecna 1e is #42. WizKids numbering per retailer listings (e.g. Miniature Market 'DD50-42 Vecna (1E)', 'Set #40 Acererak (1E)'; RPG Mini Hunter 'Acererak 5e #41'); reported by a user from the figure. Retailers pair WizKids renders with set numbers (RPG Mini Hunter: Vecna 1e #42 uses render 43, Vecna 5e #43 uses render 44); MinisGallery has the two Vecna pictures swapped."
     },
     {
      "number": "40",
@@ -4916,9 +4917,13 @@
      "name": "Vecna 5e",
      "rarity": "Rare",
      "size": "Medium",
-     "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-043_Vecna_HDRender_WebRes.png",
+     "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-044_Vecna_HDRender_WebRes.png",
      "page": "https://www.minisgallery.com/index.php?id=8715&task=image&imageName=vecna-5e",
-     "id": "43-vecna-5e"
+     "id": "43-vecna-5e",
+     "corrected": {
+      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/50th-anniversary/DDM33-043_Vecna_HDRender_WebRes.png"
+     },
+     "correctionNote": "Retailers pair WizKids renders with set numbers (RPG Mini Hunter: Vecna 1e #42 uses render 43, Vecna 5e #43 uses render 44); MinisGallery has the two Vecna pictures swapped."
     },
     {
      "number": "44",

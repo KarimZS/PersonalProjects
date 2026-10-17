@@ -102,7 +102,7 @@ def crawl(slug, category, group, seen, sets):
 
 PUBLISHED = Path(__file__).resolve().parent.parent / "data" / "published-keys.txt"
 CORRECTIONS = Path(__file__).resolve().parent.parent / "data" / "corrections.json"
-EDITABLE = ("number", "name", "rarity", "size")
+EDITABLE = ("number", "name", "rarity", "size", "image")
 
 
 def load_corrections():

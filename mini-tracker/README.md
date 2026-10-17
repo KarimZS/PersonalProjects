@@ -89,7 +89,7 @@ Add the fix to `data/corrections.json` under `overrides`, keyed by the mini's ke
 python3 scripts/scrape.py --apply-corrections
 ```
 
-Fixable fields are `number`, `name`, `rarity` and `size`. The key itself never changes, so saved collections are
+Fixable fields are `number`, `name`, `rarity`, `size` and `image` (a full image URL). The key itself never changes, so saved collections are
 unaffected, and the app shows the correction and what MinisGallery lists. Corrections are re-applied on every scrape.
 If MinisGallery later fixes a mini itself, its key changes and the scraper stops. Add an `aliases` entry from the new key
 to the old one, and the mini keeps its key.

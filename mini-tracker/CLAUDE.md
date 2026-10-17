@@ -12,7 +12,7 @@ pushing; `main` auto-deploys to production.
   - The scraper refuses to write data that drops a published key, and `server.js` refuses to start
     (so Railway keeps the previous deploy). Don't bypass either check.
   - **MinisGallery mistakes** are fixed in `data/corrections.json` → `overrides` (display fields only: number, name,
-    rarity, size, plus a `note` with the source). Keys never change for a correction. Apply without re-scraping:
+    rarity, size, image, plus a `note` with the source). Keys never change for a correction. Apply without re-scraping:
     `python3 scripts/scrape.py --apply-corrections`.
   - **When MinisGallery renumbers/renames a mini**, its scraped key changes and the scraper refuses to run. Add an
     `aliases` entry (new scraped key → existing published key) so the mini keeps its key. Never drop the old key.
