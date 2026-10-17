@@ -4,6 +4,19 @@
     "overrides: '<set id>/<mini id>' (the mini's permanent key, see data/published-keys.txt) -> fields to show instead of MinisGallery's: number, name, rarity, size, plus a 'note' saying where the right value comes from. The key never changes, so saved collections are unaffected.",
     "aliases: '<new scraped key>' -> '<published key>'. Use when MinisGallery itself fixes a number/name: that changes the scraped key, and the scraper refuses to drop the old one. The alias keeps the old key so collections stay attached."
   ],
-  "overrides": {},
+  "overrides": {
+    "icons-of-the-realms-50th-anniversary/40-vecna-1e": {
+      "number": "42",
+      "note": "Vecna 1e is #42. WizKids numbering per retailer listings (e.g. Miniature Market 'DD50-42 Vecna (1E)', 'Set #40 Acererak (1E)'; RPG Mini Hunter 'Acererak 5e #41'); reported by a user from the figure."
+    },
+    "icons-of-the-realms-50th-anniversary/41-acererak-1e": {
+      "number": "40",
+      "note": "Acererak 1e is #40. WizKids numbering per retailer listings (e.g. Miniature Market 'DD50-42 Vecna (1E)', 'Set #40 Acererak (1E)'; RPG Mini Hunter 'Acererak 5e #41'); reported by a user from the figure."
+    },
+    "icons-of-the-realms-50th-anniversary/42-acererak-5e": {
+      "number": "41",
+      "note": "Acererak 5e is #41. WizKids numbering per retailer listings (e.g. Miniature Market 'DD50-42 Vecna (1E)', 'Set #40 Acererak (1E)'; RPG Mini Hunter 'Acererak 5e #41'); reported by a user from the figure."
+    }
+  },
   "aliases": {}
 }
