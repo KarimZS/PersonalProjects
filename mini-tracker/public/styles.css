@@ -58,6 +58,8 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .overall { margin-left: auto; white-space: nowrap; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
 .overall strong { color: var(--text); }
 .overall .bar { width: 120px; }
+.overall .promo-count { padding-left: 10px; border-left: 1px solid var(--line); }
+.overall .promo-count .ico { display: none; }
 
 .icon-btn {
   display: inline-grid; place-items: center;
@@ -132,6 +134,12 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .grp-item .name { font-size: 13px; color: var(--accent); }
 .cat-sets .set-item { padding-left: 24px; }
 .grp-sets .set-item { padding-left: 36px; }
+/* A release's product sets, listed under it */
+.child-sets .set-item.child { padding-left: 40px; position: relative; }
+.grp-sets .child-sets .set-item.child { padding-left: 52px; }
+.child-sets .set-item.child::before { content: "↳"; position: absolute; left: 26px; top: 10px; color: var(--muted); font-size: 12px; }
+.grp-sets .child-sets .set-item.child::before { left: 38px; }
+.child-sets .set-item.child .name { font-weight: 500; font-size: 13px; }
 
 .bar { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
 .bar > span { display: block; height: 100%; background: var(--accent); border-radius: inherit; transition: width .25s; }
@@ -182,6 +190,7 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 .group-title { grid-column: 1 / -1; margin: 18px 0 0; font-size: 16px; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
 .group-title:first-child { margin-top: 0; }
+.group-title small { font-size: 12px; font-weight: 400; margin-left: 6px; }
 .card {
   position: relative; display: flex; flex-direction: column;
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
@@ -253,6 +262,7 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 .detail img { width: 100%; max-height: 60vh; object-fit: contain; background: #fff; display: block; }
 .detail .info { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .detail h3 { margin: 0; font-size: 20px; }
+.also-listed { margin: 0; font-size: 13px; color: var(--muted); }
 .corrected-note { margin: 0; font-size: 13px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 8px; }
 
 .toast {
@@ -329,6 +339,9 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
   .topbar { padding: var(--safe-top) 8px 0; gap: 6px; }
   .brand .sub { display: none; }
   .overall .bar { display: none; }
+  .overall .promo-count { padding-left: 8px; }
+  .overall .promo-count .lbl { display: none; }
+  .overall .promo-count .ico { display: inline; margin-right: 3px; color: var(--accent); }
   .overall { font-size: 12px; }
   .login-btn { height: 34px; padding: 0 12px; font-size: 13px; }
   .guest-banner { flex-wrap: wrap; font-size: 13px; padding: 10px 8px 10px 16px; }

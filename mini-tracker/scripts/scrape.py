@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Scrape all D&D Icons of the Realms and Critical Role sets from minisgallery.com into public/data/minis.json and public/data/minis.js.
 
-Our fixes for MinisGallery mistakes live in data/corrections.json and are applied on every run.
+Our fixes for MinisGallery mistakes live in data/corrections.json, and the release/product/promo layout in
+data/organization.json (scripts/organize.py); both are applied on every run.
 `python3 scripts/scrape.py --apply-corrections` re-applies them to the current catalog without re-scraping."""
 import html
 import json
@@ -10,6 +11,8 @@ import sys
 import time
 import urllib.request
 from pathlib import Path
+
+import organize
 
 BASE = "https://www.minisgallery.com/"
 OUT = Path(__file__).resolve().parent.parent / "public" / "data" / "minis.json"
@@ -198,6 +201,9 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     data = {"source": BASE, "scraped": scraped, "sets": sets}
+    cfg = organize.load()
+    if cfg:
+        data["org"] = organize.organize(sets, cfg)
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
     # Same data as a script so index.html works when opened straight from disk (file://).
     OUT.with_suffix(".js").write_text("window.MINIS_DATA = " + json.dumps(data, ensure_ascii=False) + ";\n")

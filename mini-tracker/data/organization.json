@@ -1,0 +1,262 @@
+{
+ "_about": [
+  "How sets are organized in the app. Display only: mini keys and saved collections never change here.",
+  "Release pages (Core Sets) show their booster checklist plus their promos. Premium/boxed minis listed on a",
+  "release page are shown in their own product set instead, nested under the release in the sidebar.",
+  "Automatic rules (scripts/organize.py): a release-page listing that is Unique/Promo or unnumbered and has the",
+  "same picture as a listing outside Core Sets is the same mini. If that other listing is in Promos it is a promo",
+  "of the release; otherwise it belongs to that product set. Rarity Promo means promo. Everything else is booster.",
+  "promo: release-page listings that are promos (case incentives, collector's-box exclusives).",
+  "booster: release-page listings forced onto the booster checklist.",
+  "products: product sets made from release-page listings that MinisGallery has no separate page for.",
+  "parents: release a product set belongs to, when the automatic rules can't tell.",
+  "same: listings that are one physical mini (identical picture file at a different address).",
+  "separate: listings with the same picture address that are different minis."
+ ],
+ "promo": [
+  "icons-of-the-realms-tyranny-of-dragons/45-ancient-brass-dragon",
+  "icons-of-the-realms-elemental-evil/45-ancient-silver-dragon",
+  "icons-of-the-realms-rage-of-demons/50-white-dracolich",
+  "icons-of-the-realms-monster-menagerie/45-treant",
+  "icons-of-the-realms-storm-kings-thunder/45-chief-guh",
+  "icons-of-the-realms-monster-menagerie-2/adventurer-s-camp-items",
+  "icons-of-the-realms-monster-menagerie-2/44a-ezmerelda-s-wagon",
+  "icons-of-the-realms-monster-menagerie-2/44b-horse",
+  "icons-of-the-realms-monster-menagerie-3/rowboat",
+  "icons-of-the-realms-monster-menagerie-3/treasure-chest",
+  "icons-of-the-realms-monster-menagerie-3/pirate-treasure",
+  "icons-of-the-realms-monster-menagerie-3/island",
+  "icons-of-the-realms-monster-menagerie-3/kraken-and-islands-case-incentive",
+  "icons-of-the-realms-monster-menagerie-3/45a-kraken",
+  "icons-of-the-realms-monster-menagerie-3/45b-tentacle",
+  "icons-of-the-realms-monster-menagerie-3/45d-tentacle",
+  "icons-of-the-realms-monster-menagerie-3/45e-tentacle",
+  "icons-of-the-realms-tomb-of-annihilation/tomb-and-traps-premium-set",
+  "icons-of-the-realms-tomb-of-annihilation/demon-mouth-statue",
+  "icons-of-the-realms-tomb-of-annihilation/archway",
+  "icons-of-the-realms-tomb-of-annihilation/pile-of-gold",
+  "icons-of-the-realms-tomb-of-annihilation/shield-of-missile-attraction",
+  "icons-of-the-realms-tomb-of-annihilation/sword-of-sharpness",
+  "icons-of-the-realms-tomb-of-annihilation/acererak-demilich-skull",
+  "icons-of-the-realms-tomb-of-annihilation/scroll",
+  "icons-of-the-realms-tomb-of-annihilation/potion",
+  "icons-of-the-realms-tomb-of-annihilation/45a-sarcophagus-on-platform",
+  "icons-of-the-realms-tomb-of-annihilation/45b-blade-trap",
+  "icons-of-the-realms-tomb-of-annihilation/45c-fire-jet-trap",
+  "icons-of-the-realms-tomb-of-annihilation/45c-magic-glyph-trap",
+  "icons-of-the-realms-tomb-of-annihilation/45d-pit-trap",
+  "icons-of-the-realms-tomb-of-annihilation/45e-collapsing-roof-trap",
+  "icons-of-the-realms-dragon-heist/city-of-the-dead-statues-monuments",
+  "icons-of-the-realms-dragon-heist/city-of-the-dead-statues-monuments-2",
+  "icons-of-the-realms-descent-into-avernus/46-infernal-war-machine",
+  "icons-of-the-realms-spelljammer-adventures-in-space/young-lunar-dragon",
+  "icons-of-the-realms-fizbans-treasury-of-dragons/moonstone-dragon-wyrmling",
+  "icons-of-the-realms-fizbans-treasury-of-dragons/moonstone-dragon-wyrmling-2",
+  "icons-of-the-realms-van-richtens-guide-to-ravenloft/rudolph-van-richten"
+ ],
+ "booster": [],
+ "products": [
+  {
+   "id": "witchlight-carnival-premium-set",
+   "name": "The Wild Beyond the Witchlight - Witchlight Carnival Premium Set",
+   "parent": "dungeons-and-dragons-the-wild-beyond-the-witchlight",
+   "minis": [
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/mister-witch",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/mister-light",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/northwind-and-red",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/thaco",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/burly",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/palasha",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/palasha-s-tank",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/candlefoot",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/dirlagraun",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/kettlesteam"
+   ]
+  },
+  {
+   "id": "witchlight-league-of-malevolence",
+   "name": "The Wild Beyond the Witchlight - League of Malevolence Starter Set",
+   "parent": "dungeons-and-dragons-the-wild-beyond-the-witchlight",
+   "minis": [
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/kelek",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/skylla",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/warduke",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/zargash",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/zarak"
+   ]
+  },
+  {
+   "id": "witchlight-valors-call",
+   "name": "The Wild Beyond the Witchlight - Valor's Call Starter Set",
+   "parent": "dungeons-and-dragons-the-wild-beyond-the-witchlight",
+   "minis": [
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/strongheart",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/elkhorn",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/ringlerun",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/molliver",
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/mercion"
+   ]
+  },
+  {
+   "id": "witchlight-swamp-gas-balloon",
+   "name": "The Wild Beyond the Witchlight - Swamp Gas Balloon Premium Set",
+   "parent": "dungeons-and-dragons-the-wild-beyond-the-witchlight",
+   "minis": [
+    "dungeons-and-dragons-the-wild-beyond-the-witchlight/swamp-gas-balloon"
+   ]
+  },
+  {
+   "id": "planescape-character-miniatures",
+   "name": "Planescape: Adventures in the Multiverse - Character Miniatures Boxed Set",
+   "parent": "icons-of-the-realms-planescape-adventures-in-the-multiverse",
+   "minis": [
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/fell",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/morte",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/musteval",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/shemeshka",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/planar-philosopher",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/transcendent-order-conduit",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/transcendent-order-instinct",
+    "icons-of-the-realms-planescape-adventures-in-the-multiverse/mercykiller-bloodhound"
+   ]
+  },
+  {
+   "id": "spelljammer-adult-solar-dragon-prince-xeleth",
+   "name": "Spelljammer: Adult Solar Dragon & Prince Xeleth",
+   "parent": "icons-of-the-realms-spelljammer-adventures-in-space",
+   "minis": [
+    "icons-of-the-realms-spelljammer-adventures-in-space/adult-solar-dragon",
+    "icons-of-the-realms-spelljammer-adventures-in-space/prince-xeleth"
+   ]
+  },
+  {
+   "id": "spelljammer-astral-dreadnought",
+   "name": "Spelljammer: Astral Dreadnought",
+   "parent": "icons-of-the-realms-spelljammer-adventures-in-space",
+   "minis": [
+    "icons-of-the-realms-spelljammer-adventures-in-space/astral-dreadnought"
+   ]
+  },
+  {
+   "id": "snowbound-frost-giant-and-mammoth",
+   "name": "Snowbound - Frost Giant & Mammoth Premium Set",
+   "parent": "icons-of-the-realms-snowbound",
+   "minis": [
+    "icons-of-the-realms-snowbound/saddle",
+    "icons-of-the-realms-snowbound/saddle-and-frost-giant-lower-torso",
+    "icons-of-the-realms-snowbound/frost-giant-lower-torso",
+    "icons-of-the-realms-snowbound/frost-giant",
+    "icons-of-the-realms-snowbound/mammoth",
+    "icons-of-the-realms-snowbound/mammoth-2"
+   ]
+  },
+  {
+   "id": "50th-anniversary-adult-red-dragon",
+   "name": "50th Anniversary - Adult Red Dragon",
+   "parent": "icons-of-the-realms-50th-anniversary",
+   "minis": [
+    "icons-of-the-realms-50th-anniversary/adult-red-dragon"
+   ]
+  },
+  {
+   "id": "adventures-in-faerun-spore-of-moander",
+   "name": "Adventures in Faerun - Spore of Moander",
+   "parent": "icons-of-the-realms-adventures-in-faerun",
+   "minis": [
+    "icons-of-the-realms-adventures-in-faerun/spore-of-moander"
+   ]
+  }
+ ],
+ "parents": {},
+ "same": [
+  [
+   "icons-of-the-realms-monster-manual-collection-2/kraken",
+   "icons-of-the-realms-kraken/kraken"
+  ],
+  [
+   "icons-of-the-realms-monster-manual-collection-2/dire-worg",
+   "icons-of-the-realms-dire-worg/dire-worg"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/harengon-brigand-with-poleaxe",
+   "icons-of-the-realms-promo-harengon-brigands/harengon-brigand-with-poleaxe"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/harengon-brigand-with-longbow",
+   "icons-of-the-realms-promo-harengon-brigands/harengon-brigand-with-longbow"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/tin-soldier",
+   "icons-of-the-realms-promo-tin-soldiers/tin-soldier"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/tin-soldier-2",
+   "icons-of-the-realms-promo-tin-soldiers/tin-soldier-2"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/tin-soldier-3",
+   "icons-of-the-realms-promo-tin-soldiers-international/tin-soldier"
+  ],
+  [
+   "dungeons-and-dragons-the-wild-beyond-the-witchlight/tin-soldier-4",
+   "icons-of-the-realms-promo-tin-soldiers-international/tin-soldier-2"
+  ],
+  [
+   "icons-of-the-realms-snowbound/bugbear",
+   "icons-of-the-realms-promo-bugbears/bugbear"
+  ],
+  [
+   "icons-of-the-realms-snowbound/bugbear-chief",
+   "icons-of-the-realms-promo-bugbears/bugbear-chief"
+  ],
+  [
+   "icons-of-the-realms-snowbound/lizardfolk",
+   "icons-of-the-realms-promo-lizardfolk/lizardfolk"
+  ],
+  [
+   "icons-of-the-realms-snowbound/lizardfolk-shaman",
+   "icons-of-the-realms-promo-lizardfolk/lizardfolk-shaman"
+  ],
+  [
+   "icons-of-the-realms-boneyard/1-orc-skeleton-1",
+   "icons-of-the-realms-promo-orc-skeletons/orc-skeleton-1"
+  ],
+  [
+   "icons-of-the-realms-boneyard/2-orc-skeleton-2",
+   "icons-of-the-realms-promo-orc-skeletons/orc-skeleton-2"
+  ],
+  [
+   "icons-of-the-realms-boneyard/3-orc-skeleton-3",
+   "icons-of-the-realms-promo-orc-skeletons/orc-skeleton-3"
+  ],
+  [
+   "icons-of-the-realms-boneyard/1-kobold-skeleton-1",
+   "icons-of-the-realms-promo-kobold-skeletons/kobold-skeleton-1"
+  ],
+  [
+   "icons-of-the-realms-boneyard/2-kobold-skeleton-2",
+   "icons-of-the-realms-promo-kobold-skeletons/kobold-skeleton-2"
+  ],
+  [
+   "icons-of-the-realms-boneyard/3-kobold-skeleton-3",
+   "icons-of-the-realms-promo-kobold-skeletons/kobold-skeleton-3"
+  ],
+  [
+   "icons-of-the-realms-boneyard/4-kobold-skeleton-4",
+   "icons-of-the-realms-promo-kobold-skeletons/kobold-skeleton-4"
+  ],
+  [
+   "icons-of-the-realms-rime-of-the-frostmaiden/yeti-tyke-1",
+   "icons-of-the-realms-promo-yeti-tykes/yeti-tyke-1"
+  ],
+  [
+   "icons-of-the-realms-rime-of-the-frostmaiden/yeti-tyke-2",
+   "icons-of-the-realms-promo-yeti-tykes/yeti-tyke-2"
+  ],
+  [
+   "icons-of-the-realms-rime-of-the-frostmaiden/yeti-tyke-3",
+   "icons-of-the-realms-promo-yeti-tykes/yeti-tyke-3"
+  ]
+ ],
+ "separate": []
+}

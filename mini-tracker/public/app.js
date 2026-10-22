@@ -13,9 +13,9 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   // ---------- data prep ----------
-  const sets = DATA.sets;
-  const minis = [];
-  for (const set of sets) {
+  // Every MinisGallery listing. m.key ("<set id>/<mini id>") is what collections store; m.set is the set it's listed in.
+  const listings = [];
+  for (const set of DATA.sets) {
     set.minis.forEach((m, i) => {
       m.key = set.id + "/" + m.id;
       m.set = set;
@@ -23,17 +23,55 @@
       m.baseRarity = m.rarity.replace(/\s*\(?variant\)?/i, "").trim() || "Unknown";
       m.variant = /variant/i.test(m.rarity);
       m.sizeGroup = SIZE_ORDER.includes(m.size) ? m.size : "Other";
-      m.search = [m.name, set.name, set.group || ""].join(" ").toLowerCase(); // rarity/size have their own filters
       m.num = parseInt(m.number, 10); // NaN for unnumbered minis
       m.numNorm = m.number.toLowerCase().replace(/[^a-z0-9]/g, ""); // "10 - Alt" -> "10alt", "12a" -> "12a"
-      minis.push(m);
+      listings.push(m);
     });
   }
-  const byKey = new Map(minis.map((m) => [m.key, m]));
+  const byKey = new Map(listings.map((m) => [m.key, m]));
 
-  // Sidebar tree: category -> group ("" for sets directly in the category) -> sets.
+  // Layout. "releases": each release shows its booster checklist plus its promos, with premium/boxed product sets
+  // nested under it, and listings that are the same mini shown once (DATA.org, from data/organization.json).
+  // "classic": MinisGallery's own categories. Try it with ?layout=releases (or ?layout=classic to go back).
+  const LAYOUTS = ["classic", "releases"];
+  const savedUi = load(UI_KEY, {});
+  const asked = new URLSearchParams(location.search).get("layout");
+  if (LAYOUTS.includes(asked)) { savedUi.layout = asked; save(UI_KEY, savedUi); }
+  const RELEASES = !!DATA.org && savedUi.layout === "releases";
+
+  // Display sets: m.home is the set a mini is shown in, m.promo marks a release's promos.
+  let sets;
+  const sameAs = new Map(); // key -> every key that is the same physical mini
+  const movedTo = new Map(); // set id no longer shown -> where its minis are now
+  if (RELEASES) {
+    sets = DATA.org.sets.map((e) => ({ ...e, minis: e.minis.map((k) => byKey.get(k)), promos: e.promos.map((k) => byKey.get(k)) }));
+    for (const g of DATA.org.same) for (const k of g) sameAs.set(k, g);
+    const byId = new Map(sets.map((x) => [x.id, x]));
+    for (const set of sets) set.children = sets.filter((x) => x.parent === set.id);
+    for (const set of sets) for (const m of [...set.minis, ...set.promos]) { m.home = set; m.promo = set.promos.includes(m); }
+    for (const set of DATA.sets) {
+      if (byId.has(set.id) || !set.minis.length) continue;
+      const shown = byKey.get((sameAs.get(set.minis[0].key) || [])[0]);
+      if (shown && shown.home) movedTo.set(set.id, shown.home.id);
+    }
+  } else {
+    sets = DATA.sets;
+    for (const set of sets) { set.promos = []; set.children = []; for (const m of set.minis) { m.home = set; m.promo = false; } }
+  }
+  const minis = sets.flatMap((s) => [...s.minis, ...s.promos]); // everything shown
+  const setById = new Map(sets.map((s) => [s.id, s]));
+  for (const m of minis) {
+    const parent = setById.get(m.home.parent);
+    m.search = [m.name, m.home.name, m.home.group || "", parent ? parent.name : ""].join(" ").toLowerCase(); // rarity/size have their own filters
+  }
+  // What a set's progress counts: boosters for a release (promos are counted separately), everything for the rest.
+  const counted = (set) => (set.kind === "promos" ? set.promos : set.minis);
+
+  // Sidebar tree: category -> group ("" for sets directly in the category) -> sets. Product sets of a release are
+  // listed under it rather than on their own (set.children).
   const categories = [];
   for (const set of sets) {
+    if (set.parent) continue;
     set.category = set.category || "Core Sets";
     set.group = (set.group || "").replace(/^Icons of the Realms\s*/i, "");
     let cat = categories.find((c) => c.name === set.category);
@@ -45,11 +83,11 @@
   // Scopes other than a single set: everything, a category, or a group within a category.
   const scopes = new Map([[ALL, { name: "All sets", sets }]]);
   for (const cat of categories) {
-    cat.sets = cat.groups.flatMap((g) => g.sets);
+    cat.sets = cat.groups.flatMap((g) => g.sets.flatMap((x) => [x, ...x.children]));
     scopes.set(cat.id, cat);
     for (const g of cat.groups) if (g.name) scopes.set(g.id, { name: g.name, sets: g.sets, category: cat.name });
   }
-  const validScope = (id) => scopes.has(id) || sets.some((s) => s.id === id);
+  const validScope = (id) => scopes.has(id) || setById.has(id);
 
   function rarityClass(r) {
     if (/very rare|ultra rare|super rare/i.test(r)) return "r-veryrare";
@@ -80,16 +118,24 @@
   let accountsAvailable = false;
   const persist = () => (user ? scheduleSync() : save(STORE_KEY, { owned: col.owned, wish: col.wish, updated: new Date().toISOString() }));
 
-  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null, setSort: "release", startedOnly: false }, load(UI_KEY, {}));
+  const ui = Object.assign({ set: ALL, status: "all", rarity: "", size: "", sort: "number", q: "", open: null, setSort: "release", startedOnly: false, layout: "classic" }, savedUi);
   ui.open = ui.open || { [categories[0].id]: true };
-  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort, open: ui.open, setSort: ui.setSort, startedOnly: ui.startedOnly });
+  const persistUi = () => save(UI_KEY, { set: ui.set, status: ui.status, sort: ui.sort, open: ui.open, setSort: ui.setSort, startedOnly: ui.startedOnly, layout: ui.layout });
   ui.q = ""; ui.rarity = ""; ui.size = "";
 
-  const count = (m) => col.owned[m.key] || 0;
+  // A mini listed in several places is one mini: it shows the highest count saved under any of its keys, and a
+  // change is saved under all of them (old keys keep working, and the classic layout stays in step).
+  const keysOf = (m) => sameAs.get(m.key) || [m.key];
+  const count = (m) => Math.max(...keysOf(m).map((k) => col.owned[k] || 0));
+  const wished = (m) => keysOf(m).some((k) => col.wish[k]);
 
   function setCount(m, n) {
     n = Math.max(0, Math.min(99, n));
-    if (n) col.owned[m.key] = n; else delete col.owned[m.key];
+    for (const k of keysOf(m)) if (n) col.owned[k] = n; else delete col.owned[k];
+    persist();
+  }
+  function setWish(m, on) {
+    for (const k of keysOf(m)) if (on) col.wish[k] = 1; else delete col.wish[k];
     persist();
   }
 
@@ -105,13 +151,18 @@
   // ---------- rendering ----------
   function currentSet() { return sets.find((s) => s.id === ui.set) || null; }
   function scopeSets() { const s = currentSet(); return s ? [s] : scopes.get(ui.set).sets; }
-  function scope() { const s = currentSet(); return s ? s.minis : ui.set === ALL ? minis : scopeSets().flatMap((x) => x.minis); }
+  function scope() { const s = currentSet(); return s ? [...s.minis, ...s.promos] : ui.set === ALL ? minis : scopeSets().flatMap((x) => [...x.minis, ...x.promos]); }
+  const mainOf = (list) => list.filter((m) => !m.promo);
+  const promosOf = (list) => list.filter((m) => m.promo);
 
+  // Top bar: everything except promos, plus a separate promo count.
   function renderOverall() {
-    const s = stats(minis);
+    const s = stats(mainOf(minis));
+    const p = stats(promosOf(minis));
     $("overall").innerHTML =
       `<div class="bar${s.owned === s.n ? " done" : ""}"><span style="width:${(s.owned / s.n) * 100}%"></span></div>` +
-      `<span><strong>${s.owned}</strong> / ${s.n}</span>`;
+      `<span><strong>${s.owned}</strong> / ${s.n}</span>` +
+      (p.n ? `<span class="promo-count" title="Promos owned (not counted in the total)"><span class="lbl">Promos </span><span class="ico" aria-hidden="true">★</span><strong>${p.owned}</strong> / ${p.n}</span>` : "");
     updateBanner();
   }
 
@@ -123,9 +174,18 @@
       <div class="meta">${meta(s)}</div>
       <div class="bar"><span style="width:${s.pct}%"></span></div></button>`;
   }
-  const setItem = (set, showCategory) => scopeItem(set.id, set.name, set.minis, "", (s) =>
-    [showCategory ? esc(set.group || set.category) : esc(set.release), s.n ? `${s.owned} / ${s.n}` + (s.owned && s.owned < s.n ? ` · ${s.n - s.owned} to go` : "") : "not yet listed"]
+  const setItem = (set, showCategory, extraClass = "") => scopeItem(set.id, extraClass === "child" ? shortName(set) : set.name, counted(set), extraClass, (s) =>
+    [showCategory ? esc(setById.get(set.parent)?.name || set.group || set.category) : esc(set.release), s.n ? `${s.owned} / ${s.n}` + (s.owned && s.owned < s.n ? ` · ${s.n - s.owned} to go` : "") : "not yet listed"]
       .filter(Boolean).join(" · "));
+  // A release and its product sets (always listed under it).
+  const setWithChildren = (set, children) => setItem(set) +
+    (children.length ? `<div class="child-sets">${children.map((c) => setItem(c, false, "child")).join("")}</div>` : "");
+  // Under its release, "Dragonlance: Lord Soth on Greater Death Dragon" reads as "Lord Soth on Greater Death Dragon".
+  function shortName(set) {
+    const parent = setById.get(set.parent);
+    const m = parent && set.name.match(/^(.+?)\s*(?::| - )\s*(.+)$/);
+    return m && parent.name.toLowerCase().includes(m[1].toLowerCase().replace(/^d&d\s+/, "")) ? m[2] : set.name;
+  }
 
   // Sorted views are one flat list across categories, for finding what's closest to done.
   const SET_SORTS = {
@@ -147,11 +207,14 @@
     const filtering = !!q || ui.startedOnly;
     const key = q + "|" + ui.startedOnly;
     if (key !== filterKey) { filterKey = key; filterOpen = {}; }
-    const started = (set) => set.minis.some((m) => count(m));
-    const match = (set) => (!q || set.name.toLowerCase().includes(q) || set.group.toLowerCase().includes(q)) && (!ui.startedOnly || started(set));
-    let html = scopeItem(ALL, "All sets", minis, "all", (s) => `${s.owned} of ${s.n} minis · ${sets.length} sets`);
+    const started = (set) => [...set.minis, ...set.promos].some((m) => count(m));
+    const selfMatch = (set) => (!q || set.name.toLowerCase().includes(q) || (set.group || "").toLowerCase().includes(q)) && (!ui.startedOnly || started(set));
+    // Product sets to list under a set: all of them when the set itself matches, otherwise the ones that match.
+    const shownChildren = (set) => (selfMatch(set) ? set.children.filter((c) => !ui.startedOnly || started(c)) : set.children.filter(selfMatch));
+    const match = (set) => selfMatch(set) || shownChildren(set).length > 0;
+    let html = scopeItem(ALL, "All sets", mainOf(minis), "all", (s) => `${s.owned} of ${s.n} minis · ${sets.length} sets`);
     if (ui.setSort !== "release") {
-      const rows = sets.filter((set) => set.minis.length && match(set)).map((set) => ({ set, s: stats(set.minis) }));
+      const rows = sets.filter((set) => counted(set).length && selfMatch(set)).map((set) => ({ set, s: stats(counted(set)) }));
       rows.sort((a, b) => SET_SORTS[ui.setSort](a, b) || a.set.name.localeCompare(b.set.name));
       html += rows.map((r) => setItem(r.set, true)).join("") || `<p class="set-empty">${ui.startedOnly ? "You haven't added any minis yet." : "No sets match."}</p>`;
       $("setList").innerHTML = html;
@@ -165,7 +228,7 @@
       const open = isCatOpen(cat.id, filtering);
       html += `<div class="cat${open ? " open" : ""}">
         <div class="cat-head">
-          ${scopeItem(cat.id, cat.name, cat.sets.flatMap((x) => x.minis), "cat-item", (s) => `${s.owned} of ${s.n} minis · ${cat.sets.length} sets`)}
+          ${scopeItem(cat.id, cat.name, cat.sets.flatMap(counted), "cat-item", (s) => `${s.owned} of ${s.n} minis · ${cat.sets.length} sets`)}
           <button class="cat-toggle" data-toggle="${esc(cat.id)}" aria-expanded="${!!open}" aria-label="${open ? "Collapse" : "Expand"} ${esc(cat.name)}">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -174,8 +237,8 @@
         for (const g of cat.groups) {
           const gs = g.sets.filter(match);
           if (!gs.length) continue;
-          if (g.name) html += scopeItem(g.id, g.name, g.sets.flatMap((x) => x.minis), "grp-item", (s) => `${s.owned} of ${s.n} minis · ${g.sets.length} sets`);
-          html += `<div class="${g.name ? "grp-sets" : "cat-sets"}">${gs.map((set) => setItem(set)).join("")}</div>`;
+          if (g.name) html += scopeItem(g.id, g.name, g.sets.flatMap(counted), "grp-item", (s) => `${s.owned} of ${s.n} minis · ${g.sets.length} sets`);
+          html += `<div class="${g.name ? "grp-sets" : "cat-sets"}">${gs.map((set) => setWithChildren(set, shownChildren(set))).join("")}</div>`;
         }
       }
       html += `</div>`;
@@ -188,12 +251,15 @@
 
   function renderSetHeader() {
     const set = currentSet();
-    const s = stats(scope());
+    const s = stats(set ? counted(set) : mainOf(scope()));
+    const p = stats(set ? (set.kind === "promos" ? [] : set.promos) : promosOf(scope()));
     const done = s.n && s.owned === s.n;
     const sc = scopes.get(ui.set);
     const title = esc(set ? set.name : sc.name);
+    const parent = set && setById.get(set.parent);
     const meta = set
-      ? [set.category + (set.group ? " › " + set.group : ""), set.release, ...set.info.slice(0, -1)].filter(Boolean).map(esc).join(" · ") +
+      ? [parent ? "Part of " + parent.name : set.category + (set.group ? " › " + set.group : ""), set.release, ...set.info.slice(0, -1),
+        set.kind === "release" && set.minis.length ? "Progress counts the booster checklist" : ""].filter(Boolean).map(esc).join(" · ") +
         ` · <a href="${esc(set.url)}" target="_blank" rel="noopener">MinisGallery ↗</a>`
       : (sc.category ? esc(sc.category) + " · " : "") + `${sc.sets.length} sets`;
     $("setHeader").innerHTML = `
@@ -203,6 +269,7 @@
         <div class="stat"><b>${s.owned}</b><span>Owned</span></div>
         <div class="stat"><b>${s.n - s.owned}</b><span>Missing</span></div>
         <div class="stat"><b>${s.dupes}</b><span>Dupes</span></div>
+        ${p.n ? `<div class="stat promo-stat" title="Not counted in the progress"><b>${p.owned}/${p.n}</b><span>Promos</span></div>` : ""}
       </div>
       ${set && s.n ? `<div class="set-actions">
         <button class="btn" data-action="own-all">Mark all owned</button>
@@ -235,7 +302,7 @@
       if (ui.status === "owned" && !c) return false;
       if (ui.status === "missing" && c) return false;
       if (ui.status === "dupes" && c < 2) return false;
-      if (ui.status === "wish" && !col.wish[m.key]) return false;
+      if (ui.status === "wish" && !wished(m)) return false;
       if (ui.rarity && m.baseRarity !== ui.rarity) return false;
       if (ui.size && m.sizeGroup !== ui.size) return false;
       if (terms.length && !terms.every((t) => t(m))) return false;
@@ -247,19 +314,21 @@
       rarity: (a, b) => rarityRank(a.baseRarity) - rarityRank(b.baseRarity) || numRank(a.number) - numRank(b.number),
       size: (a, b) => sizeRank(a.size) - sizeRank(b.size) || numRank(a.number) - numRank(b.number),
     }[ui.sort];
-    // Keep sets grouped in the all-sets view; sort within each set.
+    // Keep sets grouped in the all-sets view, a set's promos after its other minis; sort within each.
     const setIdx = new Map(sets.map((s, i) => [s.id, i]));
-    list.sort((a, b) => (!currentSet() ? setIdx.get(a.set.id) - setIdx.get(b.set.id) : 0) || cmp(a, b));
+    list.sort((a, b) => (!currentSet() ? setIdx.get(a.home.id) - setIdx.get(b.home.id) : 0) || a.promo - b.promo || cmp(a, b));
     return list;
   }
 
   // The mini's own MinisGallery page, or its set's page for minis the site hasn't photographed yet.
   const miniUrl = (m) => m.page || m.set.url;
+  // The other places a mini is listed ("Also listed in …").
+  const alsoIn = (m) => [...new Set(keysOf(m).filter((k) => k !== m.key).map((k) => byKey.get(k).set.name))].filter((n) => n !== m.home.name);
   const EXT = `<svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>`;
 
   function cardHtml(m, showSet) {
     const c = count(m);
-    const wish = !!col.wish[m.key];
+    const wish = wished(m);
     return `<article class="card${c ? " owned" : ""}" data-key="${esc(m.key)}">
       <button class="img" data-action="detail" aria-label="View ${esc(m.name)}">
         <img loading="lazy" decoding="async" src="${esc(m.image)}" alt="" onerror="this.parentNode.classList.add('broken')">
@@ -274,7 +343,8 @@
         <div class="tags">
           <span class="tag rarity ${rarityClass(m.rarity)}">${esc(m.rarity || "Unknown")}</span>
           ${m.size ? `<span class="tag">${esc(m.size)}</span>` : ""}
-          ${showSet ? `<span class="tag set" title="${esc(m.set.name)}">${esc(m.set.name)}</span>` : ""}
+          ${m.promo && m.baseRarity !== "Promo" ? `<span class="tag rarity r-promo">Promo</span>` : ""}
+          ${showSet ? `<span class="tag set" title="${esc(m.home.name)}">${esc(m.home.name)}</span>` : ""}
         </div>
         <div class="counter">
           <button data-action="dec" aria-label="Remove one" ${c ? "" : "disabled"}>−</button>
@@ -290,13 +360,20 @@
     let html = "";
     let lastSet = null;
     // Headings per set, unless the sets here are mostly tiny (promos, boxed singles): then tag each card instead.
-    const multi = !currentSet();
-    const headings = multi && list.length / (new Set(list.map((m) => m.set)).size || 1) >= 6;
+    const set = currentSet();
+    const multi = !set;
+    const headings = multi && list.length / (new Set(list.map((m) => m.home)).size || 1) >= 6;
+    let promoTitle = !!set && set.kind !== "promos";
     for (const m of list) {
-      if (headings && m.set !== lastSet) {
-        lastSet = m.set;
-        const s = stats(m.set.minis);
-        html += `<h3 class="group-title"><span>${esc(m.set.name)}</span><span>${s.owned} / ${s.n} · ${pctLabel(s)}</span></h3>`;
+      if (headings && m.home !== lastSet) {
+        lastSet = m.home;
+        const s = stats(counted(m.home));
+        html += `<h3 class="group-title" data-set="${esc(m.home.id)}"><span>${esc(m.home.name)}</span><span>${s.owned} / ${s.n} · ${pctLabel(s)}</span></h3>`;
+      }
+      if (promoTitle && m.promo) {
+        promoTitle = false;
+        const s = stats(set.promos);
+        html += `<h3 class="group-title promo-title"><span>Promos <small>not in boosters · not counted in the progress</small></span><span>${s.owned} / ${s.n}</span></h3>`;
       }
       html += cardHtml(m, multi && !headings);
     }
@@ -339,16 +416,20 @@
       num.setAttribute("aria-pressed", !!c);
       num.title = c ? "Mark as not owned" : "Mark as owned";
       const wish = card.querySelector(".wish");
-      wish.classList.toggle("on", !!col.wish[m.key]);
-      wish.setAttribute("aria-pressed", !!col.wish[m.key]);
+      wish.classList.toggle("on", wished(m));
+      wish.setAttribute("aria-pressed", wished(m));
     }
     renderOverall();
     renderSetList();
     renderSetHeader();
     if (!currentSet()) {
-      const s = stats(m.set.minis);
-      const title = [...$("grid").querySelectorAll(".group-title")].find((h) => h.firstChild.textContent === m.set.name);
+      const s = stats(counted(m.home));
+      const title = $("grid").querySelector(`.group-title[data-set="${CSS.escape(m.home.id)}"]`);
       if (title) title.lastChild.textContent = `${s.owned} / ${s.n} · ${pctLabel(s)}`;
+    } else if (m.promo) {
+      const s = stats(currentSet().promos);
+      const title = $("grid").querySelector(".promo-title");
+      if (title) title.lastChild.textContent = `${s.owned} / ${s.n}`;
     }
   }
 
@@ -364,8 +445,10 @@
           <span class="tag rarity ${rarityClass(m.rarity)}">${esc(m.rarity || "Unknown")}</span>
           ${m.size ? `<span class="tag">${esc(m.size)}</span>` : ""}
           <span class="tag">#${esc(m.number || "—")}</span>
-          <span class="tag set">${esc(m.set.name)}</span>
+          ${m.promo ? `<span class="tag rarity r-promo">Promo</span>` : ""}
+          <span class="tag set">${esc(m.home.name)}</span>
         </div>
+        ${alsoIn(m).length ? `<p class="also-listed">Also listed on MinisGallery in ${alsoIn(m).map(esc).join(", ")}. It's one mini: owning it here counts there too.</p>` : ""}
         ${m.corrected ? `<p class="corrected-note">Corrected by Mini Tracker: MinisGallery lists ${Object.entries(m.corrected)
           .map(([field, value]) => (field === "image" ? "a different picture" : `${field} as “${esc(value || "—")}”`)).join(", ")}.${m.correctionNote ? ` ${esc(m.correctionNote)}` : ""}</p>` : ""}
         <div class="counter" data-key="${esc(m.key)}">
@@ -415,10 +498,7 @@
       case "inc": setCount(m, count(m) + 1); break;
       case "dec": setCount(m, count(m) - 1); break;
       case "toggle": setCount(m, count(m) ? 0 : 1); break;
-      case "wish":
-        if (col.wish[m.key]) delete col.wish[m.key]; else col.wish[m.key] = 1;
-        persist();
-        break;
+      case "wish": setWish(m, !wished(m)); break;
       case "detail": openDetail(m); return;
     }
     refreshAfterChange(m);
@@ -428,13 +508,14 @@
     const btn = e.target.closest("[data-action]");
     const set = currentSet();
     if (!btn || !set) return;
-    const before = Object.fromEntries(set.minis.map((m) => [m.key, count(m)]));
-    const restore = () => { for (const m of set.minis) setCount(m, before[m.key]); renderAll(); };
+    const list = counted(set);
+    const before = new Map(list.map((m) => [m, count(m)]));
+    const restore = () => { for (const [m, n] of before) setCount(m, n); renderAll(); };
     if (btn.dataset.action === "own-all") {
-      for (const m of set.minis) if (!count(m)) setCount(m, 1);
+      for (const m of list) if (!count(m)) setCount(m, 1);
       toast(`Marked all of ${set.name} as owned`, restore);
     } else {
-      for (const m of set.minis) setCount(m, 0);
+      for (const m of list) setCount(m, 0);
       toast(`Cleared ${set.name}`, restore);
     }
     renderAll();
@@ -457,7 +538,7 @@
     persistUi();
     const hash = "#" + encodeURIComponent(id);
     if (location.hash !== hash) history.replaceState(null, "", hash);
-    const set = sets.find((x) => x.id === id);
+    const set = setById.get(id);
     if (set) ui.open["cat:" + set.category] = true;
     closeSidebar();
     renderAll();
@@ -574,7 +655,8 @@
   });
 
   window.addEventListener("hashchange", () => {
-    const id = decodeURIComponent(location.hash.slice(1));
+    let id = decodeURIComponent(location.hash.slice(1));
+    id = movedTo.get(id) || id;
     if (id && id !== ui.set && validScope(id)) selectSet(id);
   });
   // Keep tabs in sync when the collection changes in another tab.
@@ -705,6 +787,8 @@
     $("logoutBtn").hidden = !user;
     $("deleteAccountBtn").hidden = !user;
     $("backupCollectionBtn").hidden = $("backupUsersBtn").hidden = !(user && user.admin);
+    $("layoutBtn").hidden = !DATA.org || !(RELEASES || (user && user.admin));
+    $("layoutBtn").textContent = RELEASES ? "Switch back to the classic layout" : "Try the release layout (beta)";
     $("avatarInitial").textContent = user ? user.email[0].toUpperCase() : "";
     $("menuAccount").innerHTML = user
       ? `<div class="who">${esc(user.email)}</div><div class="sync-text"></div>`
@@ -735,6 +819,11 @@
   });
   $("loginBtn").addEventListener("click", () => goToAuth("login"));
   $("deleteAccountBtn").addEventListener("click", () => goToAuth("delete"));
+  $("layoutBtn").addEventListener("click", () => {
+    ui.layout = RELEASES ? "classic" : "releases";
+    persistUi();
+    location.href = location.pathname + location.hash; // drops any ?layout= so the choice sticks
+  });
   // Admin only: the server answers 404 for everyone else.
   $("backupCollectionBtn").addEventListener("click", () => { $("menu").hidden = true; location.href = "/api/admin/export/collection.csv"; });
   $("backupUsersBtn").addEventListener("click", () => { $("menu").hidden = true; location.href = "/api/admin/export/users.csv"; });
@@ -767,11 +856,15 @@
   }
 
   // ---------- init ----------
-  const hashSet = decodeURIComponent(location.hash.slice(1));
+  // A link to a set that now lives inside a release (e.g. a promo) opens that release.
+  let hashSet = decodeURIComponent(location.hash.slice(1));
+  hashSet = movedTo.get(hashSet) || hashSet;
+  ui.set = movedTo.get(ui.set) || ui.set;
   if (hashSet && validScope(hashSet)) ui.set = hashSet;
   if (!validScope(ui.set)) ui.set = ALL;
+  if (location.hash && location.hash !== "#" + encodeURIComponent(ui.set)) history.replaceState(null, "", "#" + encodeURIComponent(ui.set));
   // Make sure the selected set's category is expanded in the sidebar.
-  const startSet = sets.find((s) => s.id === ui.set);
+  const startSet = setById.get(ui.set);
   if (startSet) ui.open["cat:" + startSet.category] = true;
   $("setSort").value = SET_SORTS[ui.setSort] ? ui.setSort : (ui.setSort = "release");
   $("startedOnly").setAttribute("aria-pressed", !!ui.startedOnly);

@@ -95,4 +95,22 @@ unaffected, and the app shows the correction and what MinisGallery lists. Correc
 If MinisGallery later fixes a mini itself, its key changes and the scraper stops. Add an `aliases` entry from the new key
 to the old one, and the mini keeps its key.
 
+### Releases, product sets and promos
+
+The release layout (beta: `?layout=releases`, or the menu button for admins; `?layout=classic` goes back) organizes
+sets the way they are sold. Each release (a Core Set) shows its booster checklist, including chase and A/B variants,
+plus its promos. Premium and boxed minis listed on a release page move to their own product set, listed under the
+release in the sidebar. A listing that appears in several places (say Lord Soth on the Dragonlance page and in the
+*Lord Soth on Greater Death Dragon* premium set) is one mini: it shows the highest count saved under any of its keys,
+and changes are saved under all of them.
+
+- Release rows count boosters only; product sets count their own minis.
+- The top bar counts everything except promos; promos have their own counter.
+
+The layout is built by `scripts/organize.py` from `data/organization.json` (case incentives and box exclusives that are
+promos, product sets MinisGallery has no page for, listings that are the same mini; its `_about` explains the rules)
+and is written into `minis.json` as `org`. After editing it, run `python3 scripts/scrape.py --apply-corrections`. It
+only changes what is displayed; keys and saved collections stay as they are, and the scraper refuses to build a layout
+that would drop a listing.
+
 Images are loaded directly from MinisGallery. D&D and Icons of the Realms are trademarks of Wizards of the Coast.

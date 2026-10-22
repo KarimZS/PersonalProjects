@@ -16,6 +16,9 @@ pushing; `main` auto-deploys to production.
     `python3 scripts/scrape.py --apply-corrections`.
   - **When MinisGallery renumbers/renames a mini**, its scraped key changes and the scraper refuses to run. Add an
     `aliases` entry (new scraped key → existing published key) so the mini keeps its key. Never drop the old key.
+- **The release layout is display only.** `data/organization.json` (built by `scripts/organize.py`) groups listings
+  into releases, product sets and promos, and marks listings that are one mini. Never move or merge collection data
+  to match it: a mini shown once reads the highest count across its keys and writes to all of them.
 - **Migrations are additive only.** Add new files in `migrations/` (`002_…sql`, …). Never edit an applied migration,
   and never `DROP`/`RENAME` a table or column or `TRUNCATE`. Shape changes go through add-new-column → backfill →
   switch reads → (leave the old one). Each migration runs in a transaction.
