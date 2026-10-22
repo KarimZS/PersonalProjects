@@ -48,6 +48,7 @@ DATABASE_URL=postgres://user:pass@localhost:5432/minis npm start   # http://loca
 | --- | --- |
 | `DATABASE_URL` | Postgres connection string. Optional; without it the app runs in guest-only mode. |
 | `PORT` | Port to listen on (default 3000). Railway sets it. |
+| `ADMIN_EMAILS` | Comma-separated account emails that get the **Backup** buttons in the menu: CSV downloads of all accounts (no passwords) and all collections. |
 
 ## Deploy to Railway
 

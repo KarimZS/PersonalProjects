@@ -9,6 +9,9 @@ const MINI_KEYS = new Set(
 );
 const MAX_ITEMS = MINI_KEYS.size;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Accounts allowed to download backups (comma-separated emails in the ADMIN_EMAILS setting).
+const ADMINS = new Set(String(process.env.ADMIN_EMAILS || "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean));
+const isAdmin = (u) => !!u && ADMINS.has(String(u.email).toLowerCase());
 
 const router = express.Router();
 router.use(express.json({ limit: "1mb" }));
@@ -30,7 +33,7 @@ router.use((req, res, next) => (pool ? next() : res.status(503).json({ error: "A
 router.use(auth.loadUser);
 
 const wrap = (fn) => (req, res, next) => fn(req, res, next).catch(next);
-const publicUser = (u) => ({ email: u.email, plan: u.plan });
+const publicUser = (u) => ({ email: u.email, plan: u.plan, ...(isAdmin(u) && { admin: true }) });
 
 function credentials(body) {
   const email = String(body?.email || "").trim().toLowerCase();
@@ -127,6 +130,36 @@ router.patch("/collection", auth.requireUser, wrap(async (req, res) => {
     }
   }
   res.json({ ok: true, saved: keys.length });
+}));
+
+// ---------- admin backups (read-only) ----------
+// CSV cell: quoted when needed; a leading = + - @ is prefixed with ' so spreadsheets don't run it as a formula.
+function csvCell(v) {
+  let s = v instanceof Date ? v.toISOString() : String(v ?? "");
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+function sendCsv(res, name, columns, rows) {
+  const stamp = new Date().toISOString().slice(0, 10);
+  res.setHeader("Content-Type", "text/csv; charset=utf-8");
+  res.setHeader("Content-Disposition", `attachment; filename="mini-tracker-${name}-${stamp}.csv"`);
+  res.setHeader("Cache-Control", "no-store");
+  res.send([columns, ...rows.map((r) => columns.map((c) => r[c]))].map((r) => r.map(csvCell).join(",")).join("\r\n") + "\r\n");
+}
+const requireAdmin = (req, res, next) => (isAdmin(req.user) ? next() : res.status(404).json({ error: "Not found." }));
+
+// Accounts, without password hashes or sessions.
+router.get("/admin/export/users.csv", requireAdmin, wrap(async (req, res) => {
+  const { rows } = await pool.query("SELECT id, email, plan, created_at FROM users ORDER BY id");
+  sendCsv(res, "users", ["id", "email", "plan", "created_at"], rows);
+}));
+// Every collection row, with the owner's email so the file stands on its own.
+router.get("/admin/export/collection.csv", requireAdmin, wrap(async (req, res) => {
+  const { rows } = await pool.query(
+    `SELECT c.user_id, u.email, c.mini_key, c.owned, c.wish, c.updated_at
+     FROM collection_items c JOIN users u ON u.id = c.user_id ORDER BY c.user_id, c.mini_key`
+  );
+  sendCsv(res, "collection", ["user_id", "email", "mini_key", "owned", "wish", "updated_at"], rows);
 }));
 
 router.use((req, res) => res.status(404).json({ error: "Not found." }));

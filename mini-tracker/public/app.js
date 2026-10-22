@@ -704,6 +704,7 @@
     $("openMenu").hidden = !!user;
     $("logoutBtn").hidden = !user;
     $("deleteAccountBtn").hidden = !user;
+    $("backupCollectionBtn").hidden = $("backupUsersBtn").hidden = !(user && user.admin);
     $("avatarInitial").textContent = user ? user.email[0].toUpperCase() : "";
     $("menuAccount").innerHTML = user
       ? `<div class="who">${esc(user.email)}</div><div class="sync-text"></div>`
@@ -734,6 +735,9 @@
   });
   $("loginBtn").addEventListener("click", () => goToAuth("login"));
   $("deleteAccountBtn").addEventListener("click", () => goToAuth("delete"));
+  // Admin only: the server answers 404 for everyone else.
+  $("backupCollectionBtn").addEventListener("click", () => { $("menu").hidden = true; location.href = "/api/admin/export/collection.csv"; });
+  $("backupUsersBtn").addEventListener("click", () => { $("menu").hidden = true; location.href = "/api/admin/export/users.csv"; });
 
   $("logoutBtn").addEventListener("click", async () => {
     $("menu").hidden = true;
