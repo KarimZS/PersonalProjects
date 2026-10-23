@@ -94,8 +94,7 @@ def organize(sets, cfg):
         rel = [k for k in g if set_of[k]["id"] in release_ids]
         outside = [k for k in g if set_of[k]["id"] not in release_ids]
         if not rel:
-            for k in g:
-                shown[k] = (set_of[k]["id"], "main")  # not linked to a release: unchanged
+            shown[g[0]] = (set_of[g[0]]["id"], "main")  # not linked to a release: its first listing
             continue
         if len({set_of[k]["id"] for k in rel}) > 1 and len(g) > len(rel):
             fail(f"same: group {g} spans several release pages")

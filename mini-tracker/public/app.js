@@ -644,15 +644,6 @@
       toast("Couldn't import that file: " + err.message);
     }
   });
-  $("resetBtn").addEventListener("click", () => {
-    $("menu").hidden = true;
-    if (!confirm("Remove every mini from your collection and wishlist?")) return;
-    const prev = { owned: col.owned, wish: col.wish };
-    col.owned = {}; col.wish = {};
-    persist();
-    renderAll();
-    toast("Collection reset", () => { col.owned = prev.owned; col.wish = prev.wish; persist(); renderAll(); });
-  });
 
   window.addEventListener("hashchange", () => {
     let id = decodeURIComponent(location.hash.slice(1));
@@ -785,7 +776,6 @@
     $("openMenuUser").hidden = !user;
     $("openMenu").hidden = !!user;
     $("logoutBtn").hidden = !user;
-    $("deleteAccountBtn").hidden = !user;
     $("backupCollectionBtn").hidden = $("backupUsersBtn").hidden = !(user && user.admin);
     $("layoutBtn").hidden = !DATA.org || !(RELEASES || (user && user.admin));
     $("layoutBtn").textContent = RELEASES ? "Switch back to the classic layout" : "Try the release layout (beta)";
@@ -818,7 +808,6 @@
     if (b) goToAuth(b.dataset.auth);
   });
   $("loginBtn").addEventListener("click", () => goToAuth("login"));
-  $("deleteAccountBtn").addEventListener("click", () => goToAuth("delete"));
   $("layoutBtn").addEventListener("click", () => {
     ui.layout = RELEASES ? "classic" : "releases";
     persistUi();
