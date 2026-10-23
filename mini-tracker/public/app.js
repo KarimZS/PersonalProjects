@@ -62,7 +62,8 @@
   const setById = new Map(sets.map((s) => [s.id, s]));
   for (const m of minis) {
     const parent = setById.get(m.home.parent);
-    m.search = [m.name, m.home.name, m.home.group || "", parent ? parent.name : ""].join(" ").toLowerCase(); // rarity/size have their own filters
+    // Rarity/size have their own filters; "promo" finds a release's promos even when their rarity is e.g. Unique.
+    m.search = [m.name, m.home.name, m.home.group || "", parent ? parent.name : "", m.promo ? "promo" : ""].join(" ").toLowerCase();
   }
   // What a set's progress counts: boosters for a release (promos are counted separately), everything for the rest.
   const counted = (set) => (set.kind === "promos" ? set.promos : set.minis);
@@ -303,7 +304,7 @@
       if (ui.status === "missing" && c) return false;
       if (ui.status === "dupes" && c < 2) return false;
       if (ui.status === "wish" && !wished(m)) return false;
-      if (ui.rarity && m.baseRarity !== ui.rarity) return false;
+      if (ui.rarity && m.baseRarity !== ui.rarity && !(ui.rarity === "Promo" && m.promo)) return false;
       if (ui.size && m.sizeGroup !== ui.size) return false;
       if (terms.length && !terms.every((t) => t(m))) return false;
       return true;
@@ -386,7 +387,7 @@
 
   function renderFilterOptions() {
     const list = scope();
-    const rarities = [...new Set(list.map((m) => m.baseRarity))].sort((a, b) => rarityRank(a) - rarityRank(b));
+    const rarities = [...new Set(list.map((m) => (m.promo ? "Promo" : m.baseRarity)).concat(list.map((m) => m.baseRarity)))].sort((a, b) => rarityRank(a) - rarityRank(b));
     const sizes = [...new Set(list.map((m) => m.sizeGroup))].sort((a, b) => sizeRank(a) - sizeRank(b));
     if (!rarities.includes(ui.rarity)) ui.rarity = "";
     if (!sizes.includes(ui.size)) ui.size = "";
