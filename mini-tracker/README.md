@@ -97,7 +97,8 @@ to the old one, and the mini keeps its key.
 
 ### Releases, product sets and promos
 
-The release layout (beta: `?layout=releases`, or the menu button for admins; `?layout=classic` goes back) organizes
+The release layout (anyone can switch between it and MinisGallery's classic categories from the menu, which reloads
+the page; classic is the default; `?layout=releases` / `?layout=classic` also switch) organizes
 sets the way they are sold. Each release (a Core Set) shows its booster checklist, including chase and A/B variants,
 plus its promos. Premium and boxed minis listed on a release page move to their own product set, listed under the
 release in the sidebar. A listing that appears in several places (say Lord Soth on the Dragonlance page and in the
@@ -107,7 +108,7 @@ and changes are saved under all of them.
 - Release rows count boosters only; product sets count their own minis.
 - The top bar counts everything except promos; promos have their own counter.
 
-The layout is built by `scripts/organize.py` from `data/organization.json` (case incentives and box exclusives that are
+The layout is built by `scripts/organize.py` from `data/organization.json` (collector's-box exclusives that are
 promos, product sets MinisGallery has no page for, listings that are the same mini; its `_about` explains the rules)
 and is written into `minis.json` as `org`. After editing it, run `python3 scripts/scrape.py --apply-corrections`. It
 only changes what is displayed; keys and saved collections stay as they are, and the scraper refuses to build a layout

@@ -32,7 +32,7 @@
 
   // Layout. "releases": each release shows its booster checklist plus its promos, with premium/boxed product sets
   // nested under it, and listings that are the same mini shown once (DATA.org, from data/organization.json).
-  // "classic": MinisGallery's own categories. Try it with ?layout=releases (or ?layout=classic to go back).
+  // "classic": MinisGallery's own categories (the default). Anyone can switch from the menu, or with ?layout=.
   const LAYOUTS = ["classic", "releases"];
   const savedUi = load(UI_KEY, {});
   const asked = new URLSearchParams(location.search).get("layout");
@@ -184,6 +184,10 @@
   // Under its release, "Dragonlance: Lord Soth on Greater Death Dragon" reads as "Lord Soth on Greater Death Dragon".
   function shortName(set) {
     const parent = setById.get(set.parent);
+    if (parent && set.name.startsWith(parent.name)) {
+      const rest = set.name.slice(parent.name.length).replace(/^\s*(?::|-)\s*/, "");
+      if (rest) return rest;
+    }
     const m = parent && set.name.match(/^(.+?)\s*(?::| - )\s*(.+)$/);
     return m && parent.name.toLowerCase().includes(m[1].toLowerCase().replace(/^d&d\s+/, "")) ? m[2] : set.name;
   }
@@ -778,8 +782,6 @@
     $("openMenu").hidden = !!user;
     $("logoutBtn").hidden = !user;
     $("backupCollectionBtn").hidden = $("backupUsersBtn").hidden = !(user && user.admin);
-    $("layoutBtn").hidden = !DATA.org || !(RELEASES || (user && user.admin));
-    $("layoutBtn").textContent = RELEASES ? "Switch back to the classic layout" : "Try the release layout (beta)";
     $("avatarInitial").textContent = user ? user.email[0].toUpperCase() : "";
     $("menuAccount").innerHTML = user
       ? `<div class="who">${esc(user.email)}</div><div class="sync-text"></div>`
@@ -809,10 +811,15 @@
     if (b) goToAuth(b.dataset.auth);
   });
   $("loginBtn").addEventListener("click", () => goToAuth("login"));
-  $("layoutBtn").addEventListener("click", () => {
+  $("layoutBtn").hidden = !DATA.org;
+  $("layoutBtn").textContent = RELEASES ? "Switch to the classic layout" : "Switch to the release layout";
+  $("layoutBtn").addEventListener("click", async () => {
+    $("menu").hidden = true;
     ui.layout = RELEASES ? "classic" : "releases";
     persistUi();
-    location.href = location.pathname + location.hash; // drops any ?layout= so the choice sticks
+    await flushSync().catch(() => {}); // save pending changes before the reload
+    history.replaceState(null, "", location.pathname + location.hash); // drop any ?layout= so the choice sticks
+    location.reload();
   });
   // Admin only: the server answers 404 for everyone else.
   $("backupCollectionBtn").addEventListener("click", () => { $("menu").hidden = true; location.href = "/api/admin/export/collection.csv"; });
