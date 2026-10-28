@@ -188,6 +188,7 @@ input[type=search]:focus, select:focus { border-color: var(--accent); }
 
 /* ---------- grid / cards ---------- */
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+.grid-more { display: block; margin: 18px auto 0; }
 .group-title { grid-column: 1 / -1; margin: 18px 0 0; font-size: 16px; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
 .group-title:first-child { margin-top: 0; }
 .group-title small { font-size: 12px; font-weight: 400; margin-left: 6px; }

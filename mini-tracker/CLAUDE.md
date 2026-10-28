@@ -35,7 +35,11 @@ pushing; `main` auto-deploys to production.
 1. `node -e "require('vm').createScript(require('fs').readFileSync('public/app.js','utf8'))"` (syntax check),
    then start the server (`npm start`); it validates published keys on boot.
 2. For data or scraper changes: compare the keys against `data/published-keys.txt`. None may be missing.
-3. Test account flows against a local Postgres (`DATABASE_URL=… npm start`): signup, login, edit, reload, logout.
+3. Run the browser tests against a throwaway local Postgres:
+   `TEST_DATABASE_URL=postgres://… NODE_PATH=$(npm root -g) node tests/run.js` (needs Playwright installed globally).
+   They cover accounts and sync (signup, login, edit, reload, logout), guest mode, search, menus, both layouts,
+   linked minis, the batched grid and admin backups. Add checks there for new features; keep tests in the repo.
+   `--perf` also prints phone-speed timings.
 4. After deploying, confirm `/health` and `/api/me` respond on production.
 
 ## Deploy

@@ -250,9 +250,20 @@
     }
     if (!shownAny) html += `<p class="set-empty">${ui.startedOnly && !q ? "You haven't added any minis yet." : "No sets match."}</p>`;
     $("setList").innerHTML = html;
-    const active = $("setList").querySelector(".set-item.active");
-    if (active && !q) active.scrollIntoView({ block: "nearest" });
+    setListDirty = false;
   }
+  function scrollToActiveSet() {
+    const active = $("setList").querySelector(".set-item.active");
+    if (active && !$("setSearch").value.trim()) active.scrollIntoView({ block: "nearest" });
+  }
+  // On phones the set list is a closed drawer most of the time: redraw it when it opens, not on every tap.
+  const drawerLayout = matchMedia("(max-width: 860px)");
+  let setListDirty = false;
+  function refreshSetList() {
+    if (drawerLayout.matches && !$("sidebar").classList.contains("open")) setListDirty = true;
+    else renderSetList();
+  }
+  drawerLayout.addEventListener?.("change", () => { if (setListDirty) refreshSetList(); });
 
   function renderSetHeader() {
     const set = currentSet();
@@ -360,33 +371,58 @@
     </article>`;
   }
 
+  // The grid is drawn in batches as you scroll: drawing all ~3,000 cards at once made the All sets view slow on phones.
+  const BATCH = 120;
+  let grid = { list: [], shown: 0 };
   function renderGrid() {
     const list = filtered();
-    let html = "";
-    let lastSet = null;
-    // Headings per set, unless the sets here are mostly tiny (promos, boxed singles): then tag each card instead.
     const set = currentSet();
     const multi = !set;
-    const headings = multi && list.length / (new Set(list.map((m) => m.home)).size || 1) >= 6;
-    let promoTitle = !!set && set.kind !== "promos";
-    for (const m of list) {
-      if (headings && m.home !== lastSet) {
-        lastSet = m.home;
-        const s = stats(counted(m.home));
-        html += `<h3 class="group-title" data-set="${esc(m.home.id)}"><span>${esc(m.home.name)}</span><span>${s.owned} / ${s.n} · ${pctLabel(s)}</span></h3>`;
-      }
-      if (promoTitle && m.promo) {
-        promoTitle = false;
-        const s = stats(set.promos);
-        html += `<h3 class="group-title promo-title"><span>Promos <small>not in boosters · not counted in the progress</small></span><span>${s.owned} / ${s.n}</span></h3>`;
-      }
-      html += cardHtml(m, multi && !headings);
-    }
-    $("grid").innerHTML = html;
+    grid = {
+      list, shown: 0, set, multi, lastSet: null,
+      // Headings per set, unless the sets here are mostly tiny (promos, boxed singles): then tag each card instead.
+      headings: multi && list.length / (new Set(list.map((m) => m.home)).size || 1) >= 6,
+      promoTitle: !!set && set.kind !== "promos",
+    };
+    $("grid").innerHTML = "";
+    drawMore();
     $("empty").hidden = list.length > 0 || scope().length === 0;
     $("resultCount").textContent = scope().length === 0
       ? "This set's minis haven't been listed yet."
       : `Showing ${list.length} of ${scope().length} minis`;
+  }
+
+  function drawMore() {
+    const g = grid;
+    const end = Math.min(g.list.length, g.shown + BATCH);
+    let html = "";
+    for (let i = g.shown; i < end; i++) {
+      const m = g.list[i];
+      if (g.headings && m.home !== g.lastSet) {
+        g.lastSet = m.home;
+        const s = stats(counted(m.home));
+        html += `<h3 class="group-title" data-set="${esc(m.home.id)}"><span>${esc(m.home.name)}</span><span>${s.owned} / ${s.n} · ${pctLabel(s)}</span></h3>`;
+      }
+      if (g.promoTitle && m.promo) {
+        g.promoTitle = false;
+        const s = stats(g.set.promos);
+        html += `<h3 class="group-title promo-title"><span>Promos <small>not in boosters · not counted in the progress</small></span><span>${s.owned} / ${s.n}</span></h3>`;
+      }
+      html += cardHtml(m, g.multi && !g.headings);
+    }
+    g.shown = end;
+    $("grid").insertAdjacentHTML("beforeend", html);
+    $("gridMore").hidden = g.shown >= g.list.length;
+  }
+  $("gridMore").addEventListener("click", drawMore);
+  // Draw the next batch well before the end of the grid scrolls into view.
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      drawMore();
+      io.unobserve($("gridMore")); io.observe($("gridMore")); // check again: one batch may not fill the screen
+    }, { rootMargin: "1500px 0px" });
+    io.observe($("gridMore"));
   }
 
   function renderFilterOptions() {
@@ -401,7 +437,7 @@
 
   function renderAll() {
     renderOverall();
-    renderSetList();
+    refreshSetList();
     renderSetHeader();
     renderFilterOptions();
     renderGrid();
@@ -425,7 +461,7 @@
       wish.setAttribute("aria-pressed", wished(m));
     }
     renderOverall();
-    renderSetList();
+    refreshSetList();
     renderSetHeader();
     if (!currentSet()) {
       const s = stats(counted(m.home));
@@ -547,6 +583,7 @@
     if (set) ui.open["cat:" + set.category] = true;
     closeSidebar();
     renderAll();
+    scrollToActiveSet();
     window.scrollTo({ top: 0 });
   }
   $("setList").addEventListener("click", (e) => {
@@ -601,6 +638,8 @@
   // Mobile sidebar drawer
   function openSidebar() {
     $("sidebar").classList.add("open");
+    if (setListDirty) renderSetList();
+    scrollToActiveSet();
     $("scrim").hidden = false;
     $("openSets").setAttribute("aria-expanded", "true");
   }
@@ -867,6 +906,7 @@
   $("startedOnly").setAttribute("aria-pressed", !!ui.startedOnly);
   $("scraped").textContent = DATA.scraped ? `(updated ${DATA.scraped})` : "";
   renderAll();
+  scrollToActiveSet();
   initAccount();
   window.__appReady = true;
 })();

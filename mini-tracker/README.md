@@ -50,6 +50,18 @@ DATABASE_URL=postgres://user:pass@localhost:5432/minis npm start   # http://loca
 | `PORT` | Port to listen on (default 3000). Railway sets it. |
 | `ADMIN_EMAILS` | Comma-separated account emails that get the **Backup** buttons in the menu: CSV downloads of all accounts (no passwords) and all collections. |
 
+## Tests
+
+Browser tests live in `tests/` (Playwright, not a dependency of the app; install it with `npm i -g playwright`).
+`tests/run.js` starts two local servers, one with a database and one in guest-only mode, and runs every suite:
+
+```sh
+TEST_DATABASE_URL=postgres://postgres@localhost:5432/minis_test NODE_PATH=$(npm root -g) node tests/run.js
+node tests/run.js --perf   # also prints load and tap timings with the CPU slowed to phone speed
+```
+
+Use a throwaway database: the tests create accounts.
+
 ## Deploy to Railway
 
 This repo holds several projects, so each one is its own Railway service. There is no `railway.json`,
