@@ -5,6 +5,7 @@ A collection of independent projects. Each one lives in its own folder, with its
 | Project | Description |
 | --- | --- |
 | [`mini-tracker`](mini-tracker/) | Mini Tracker: mobile-friendly miniatures collection tracker with accounts, currently covering D&D Icons of the Realms and Critical Role (Node, deployed on Railway) |
+| [`portfolio`](portfolio/) | Personal portfolio site for karimzsoliman.com (static, zero-dependency Node server on Railway) |
 
 ## Deploying on Railway
 

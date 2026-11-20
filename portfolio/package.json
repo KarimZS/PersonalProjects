@@ -1,0 +1,14 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio site for karimzsoliman.com",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
