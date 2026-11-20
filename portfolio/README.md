@@ -1,6 +1,6 @@
 # Portfolio
 
-The personal site at **karimzsoliman.com**: a single static page (work, about, contact) served by a tiny Node
+The personal site at **karimzsoliman.com**: a single static page (experience, about, contact) served by a tiny Node
 server with no dependencies.
 
 ## Editing

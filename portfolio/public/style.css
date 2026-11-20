@@ -106,3 +106,7 @@ a.project:hover .arrow { transform: translate(2px, -2px); }
   .p-year { line-height: 1.4; }
   .top nav { gap: .9rem; }
 }
+
+.p-title .role { display: block; font: .95rem/1.4 var(--sans); color: var(--accent); margin-top: .15rem; }
+.project { grid-template-columns: 6rem 1fr; }
+@media (max-width: 520px) { .project { grid-template-columns: 1fr; } }
