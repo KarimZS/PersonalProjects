@@ -28038,67 +28038,95 @@
    "url": "https://www.minisgallery.com/index.php?id=icons-of-the-realms-classic-monsters-collection-u-z",
    "minis": [
     {
-     "number": "",
+     "number": "1",
      "name": "Umber Hulk",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/umber-hulk_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10682&task=image&imageName=umber-hulk",
-     "id": "umber-hulk"
+     "id": "umber-hulk",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 1 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "2",
      "name": "Vampire",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/vampire_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10683&task=image&imageName=vampire",
-     "id": "vampire"
+     "id": "vampire",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 2 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "3",
      "name": "Wight",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/wight_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10684&task=image&imageName=wight",
-     "id": "wight"
+     "id": "wight",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 3 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "4",
      "name": "Wraith",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/wraith_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10685&task=image&imageName=wraith",
-     "id": "wraith"
+     "id": "wraith",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 4 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "5",
      "name": "Xorn",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/xorn_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10686&task=image&imageName=xorn",
-     "id": "xorn"
+     "id": "xorn",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 5 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "6",
      "name": "Yeti",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/yeti_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10687&task=image&imageName=yeti",
-     "id": "yeti"
+     "id": "yeti",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 6 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "7",
      "name": "Zombie",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-u-z/zombie_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10688&task=image&imageName=zombie",
-     "id": "zombie"
+     "id": "zombie",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 7 of 7 in MinisGallery's listed order for Classic Collection Monsters U-Z, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     }
    ],
    "category": "Special Release Sets",
@@ -28116,13 +28144,17 @@
    "url": "https://www.minisgallery.com/index.php?id=icons-of-the-realms-classic-monsters-collection-s-t",
    "minis": [
     {
-     "number": "",
+     "number": "1",
      "name": "Salamander",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/salamander_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10509&task=image&imageName=salamander",
-     "id": "salamander"
+     "id": "salamander",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 1 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
      "number": "2",
@@ -28138,49 +28170,69 @@
      "correctionNote": "The Satyr is #2 of 7 in Classic Collection Monsters S-T (owner's copy is marked 2/7); MinisGallery lists the set without numbers."
     },
     {
-     "number": "",
+     "number": "3",
      "name": "Shambling Mound",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/shambling-mound_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10511&task=image&imageName=shambling-mound",
-     "id": "shambling-mound"
+     "id": "shambling-mound",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 3 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "4",
      "name": "Stirge",
      "rarity": "Unique",
      "size": "Small",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/stirge_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10512&task=image&imageName=stirge",
-     "id": "stirge"
+     "id": "stirge",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 4 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "5",
      "name": "Treant",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/treant_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10513&task=image&imageName=treant",
-     "id": "treant"
+     "id": "treant",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 5 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "6",
      "name": "Troglodyte",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/troglodyte_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10514&task=image&imageName=troglodyte",
-     "id": "troglodyte"
+     "id": "troglodyte",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 6 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "7",
      "name": "Troll",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/troll_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10515&task=image&imageName=troll",
-     "id": "troll"
+     "id": "troll",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 7 of 7 in MinisGallery's listed order for Classic Collection Monsters S-T, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     }
    ],
    "category": "Special Release Sets",
@@ -28198,76 +28250,108 @@
    "url": "https://www.minisgallery.com/index.php?id=icons-of-the-realms-classic-monsters-collection-o-r",
    "minis": [
     {
-     "number": "",
+     "number": "1",
      "name": "Otyugh",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/otyugh_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10253&task=image&imageName=otyugh",
-     "id": "otyugh"
+     "id": "otyugh",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 1 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "2",
      "name": "Owlbear",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/owlbear_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10254&task=image&imageName=owlbear",
-     "id": "owlbear"
+     "id": "owlbear",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 2 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "3",
      "name": "Pseudo-dragon",
      "rarity": "Unique",
      "size": "Small",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/pseudo-dragon_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10255&task=image&imageName=pseudo-dragon",
-     "id": "pseudo-dragon"
+     "id": "pseudo-dragon",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 3 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "4",
      "name": "Quasit",
      "rarity": "Unique",
      "size": "Small",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/quasit_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10256&task=image&imageName=quasit",
-     "id": "quasit"
+     "id": "quasit",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 4 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "5",
      "name": "Rakshasa",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/rakshasa_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10257&task=image&imageName=rakshasa",
-     "id": "rakshasa"
+     "id": "rakshasa",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 5 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "6",
      "name": "Remorhaz",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/remorhaz_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10258&task=image&imageName=remorhaz",
-     "id": "remorhaz"
+     "id": "remorhaz",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 6 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "7",
      "name": "Roper",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/roper_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10259&task=image&imageName=roper",
-     "id": "roper"
+     "id": "roper",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 7 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     },
     {
-     "number": "",
+     "number": "8",
      "name": "Rust Monster",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-o-r/rust-monster_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10260&task=image&imageName=rust-monster",
-     "id": "rust-monster"
+     "id": "rust-monster",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 8 of 8 in MinisGallery's listed order for Classic Collection Monsters O-R, which MinisGallery leaves unnumbered (confirmed by the Satyr being 2/7 in S-T)."
     }
    ],
    "category": "Special Release Sets",
