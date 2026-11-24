@@ -33802,85 +33802,121 @@
    "url": "https://www.minisgallery.com/index.php?id=critical-role-npcs-of-wildemount",
    "minis": [
     {
-     "number": "",
+     "number": "1",
      "name": "Essek Thelyss",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/essek-thelyss_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6829&task=image&imageName=essek-thelyss",
-     "id": "essek-thelyss"
+     "id": "essek-thelyss",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 1 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "2",
      "name": "Kiri",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/kiri_pre2.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6830&task=image&imageName=kiri",
-     "id": "kiri"
+     "id": "kiri",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 2 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "3",
      "name": "Marion Lavorre",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/marion-lavorre_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6821&task=image&imageName=marion-lavorre",
-     "id": "marion-lavorre"
+     "id": "marion-lavorre",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 3 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "4",
      "name": "Orly Skiffback",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/orly-skiffback_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6831&task=image&imageName=orly-skiffback",
-     "id": "orly-skiffback"
+     "id": "orly-skiffback",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 4 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "5",
      "name": "Sunbreaker Ulumon",
      "rarity": "Unique",
      "size": "Large",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/sunbreaker-ulumon_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6822&task=image&imageName=sunbreaker-ulumon",
-     "id": "sunbreaker-ulumon"
+     "id": "sunbreaker-ulumon",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 5 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "6",
      "name": "The Gentleman",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/the-gentleman_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6833&task=image&imageName=the-gentleman",
-     "id": "the-gentleman"
+     "id": "the-gentleman",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 6 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "7",
      "name": "The Traveler",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/the-traveler_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6832&task=image&imageName=the-traveler",
-     "id": "the-traveler"
+     "id": "the-traveler",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 7 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "8",
      "name": "Trent Ikithon",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/trent-ikithon_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6823&task=image&imageName=trent-ikithon",
-     "id": "trent-ikithon"
+     "id": "trent-ikithon",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 8 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     },
     {
-     "number": "",
+     "number": "9",
      "name": "Yussa Errenis",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/critical-role/npcs-of-wildemount/yussa-errenis_pre.jpg",
      "page": "https://www.minisgallery.com/index.php?id=6820&task=image&imageName=yussa-errenis",
-     "id": "yussa-errenis"
+     "id": "yussa-errenis",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "Numbered 9 of 9 in MinisGallery's listed order for NPC's of Wildemount, which MinisGallery leaves unnumbered."
     }
    ],
    "category": "Critical Role",
