@@ -28125,13 +28125,17 @@
      "id": "salamander"
     },
     {
-     "number": "",
+     "number": "2",
      "name": "Satyr",
      "rarity": "Unique",
      "size": "Medium",
      "image": "https://www.minisgallery.com/images/minis/dungeons-and-dragons-icons-of-the-realms/classic-monsters-s-t/satyr_render.jpg",
      "page": "https://www.minisgallery.com/index.php?id=10510&task=image&imageName=satyr",
-     "id": "satyr"
+     "id": "satyr",
+     "corrected": {
+      "number": ""
+     },
+     "correctionNote": "The Satyr is #2 of 7 in Classic Collection Monsters S-T (owner's copy is marked 2/7); MinisGallery lists the set without numbers."
     },
     {
      "number": "",
